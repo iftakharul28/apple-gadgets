@@ -1,0 +1,124 @@
+.product {
+  &__main {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  &__image-wrapper {
+    position: relative;
+    height: 0;
+    padding-top: 55.25%;
+  }
+  &__image {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: auto;
+  }
+  &__details-wrapper {
+    grid-column: span 2 / span 2;
+  }
+  &__details-card-wrapper {
+    display: flex;
+    gap: rem(6px);
+  }
+  &__details-card {
+    display: flex;
+    gap: rem(6px);
+    padding: rem(6px);
+    background-color: $gray-200;
+    border-radius: rem(6px);
+  }
+  &__details-card-title {
+    font-size: rem(18px);
+    color: $dark-700;
+  }
+  &__details-card-text {
+    font-size: rem(16px);
+    font-weight: 600;
+    color: $dark-400;
+  }
+  &__color-wrapper {
+    display: flex;
+    align-items: center;
+    gap: rem(15px);
+    margin: rem(20px) 0 rem(15px);
+  }
+  &__color {
+    height: rem(32px);
+    width: rem(32px);
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: rem(40px);
+      width: rem(40px);
+      border-radius: 50%;
+      border: 1px solid $gray-500;
+    }
+    &--active::before {
+      border: 1px solid $red-700;
+    }
+  }
+  &__account,
+  &__actions-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  &__account {
+    gap: rem(20px);
+  }
+  &__actions-wrapper {
+    border: 1px solid $orange-700;
+    border-radius: rem(4px);
+  }
+  &__action {
+    border: none;
+    background-color: transparent;
+    height: rem(40px);
+    width: rem(40px);
+    cursor: pointer;
+  }
+  &__action-input {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    -moz-appearance: textfield;
+    font-size: rem(16px);
+    font-weight: 600;
+    line-height: 1.4;
+    color: $gray-700;
+    text-align: center;
+    width: rem(61px);
+    height: rem(40px);
+    border: none;
+    border-left: 1px solid $orange-700;
+    border-right: 1px solid $orange-700;
+    border-radius: rem(4px);
+    &:focus {
+      outline: none;
+    }
+  }
+  &__button {
+    font-size: rem(15px);
+    font-weight: 600;
+    width: rem(117px);
+    height: rem(42px);
+    cursor: pointer;
+    color: $orange-700;
+    background-color: $white;
+    border: 1px solid $orange-700;
+    border-radius: rem(4px);
+    &--secondey {
+      color: $white;
+      background-color: $orange-700;
+      border: none;
+    }
+  }
+}

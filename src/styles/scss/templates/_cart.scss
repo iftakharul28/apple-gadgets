@@ -1,0 +1,131 @@
+.cart {
+  &__wrappper {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: rem(25px);
+    margin: rem(45px) 0 rem(30px);
+  }
+  &__product {
+    border-radius: rem(4px);
+    grid-column: span 2;
+    box-shadow: -1px 5px 5px 0px rgba($dark-600, 0.1);
+  }
+  &__product-list {
+    padding: rem(15px);
+  }
+  &__product-wrapper {
+    display: flex;
+    gap: rem(20px);
+    &:not(:last-child) {
+      margin-bottom: rem(15px);
+    }
+  }
+  &__product-heading {
+    border-top-left-radius: rem(4px);
+    border-top-right-radius: rem(4px);
+    font-size: rem(22px);
+    font-weight: 600;
+    color: $dark-700;
+    background-color: $gray-300;
+    margin: 0;
+    padding: rem(8px) rem(10px);
+  }
+  &__product-box {
+    display: flex;
+    align-items: center;
+    gap: rem(8px);
+    margin: rem(3px) 0;
+  }
+  &__product-title {
+    font-size: rem(22px);
+    font-weight: 500;
+    color: $dark-700;
+  }
+  &__product-text {
+    font-size: rem(18px);
+    font-weight: 500;
+    color: $dark-600;
+    &--secondery {
+      font-size: rem(16px);
+      color: $orange-600;
+    }
+  }
+  &__product-details {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__product-action {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  &__product-image-wrapper {
+    width: rem(80px);
+    margin: 0 auto;
+  }
+  &__product-image {
+    width: 100%;
+    height: auto;
+  }
+  &__product-remove {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-bottom: rem(20px);
+  }
+  &__icon {
+    height: rem(20px);
+    width: rem(20px);
+  }
+  &__table {
+    padding: rem(15px);
+    height: max-content;
+    box-shadow: -1px 4px 5px 0px rgba($dark-600, 0.1);
+  }
+  &__table-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: rem(6px) rem(12px);
+  }
+  &__table-title {
+    font-size: rem(16px);
+    font-weight: 500;
+    color: $dark-600;
+    text-align: center;
+  }
+  &__table-text {
+    font-size: rem(13px);
+    color: $dark-300;
+    text-align: center;
+    padding: rem(6px) 0;
+  }
+  &__table-hr {
+    height: 0;
+    border: none;
+    border-top: 1px solid $dark-200;
+    margin: rem(8px) 0;
+    &--secondery {
+      border-top: 1px dotted $dark-200;
+    }
+  }
+  &__button {
+    font-size: rem(15px);
+    font-weight: 600;
+    width: 100%;
+    height: rem(42px);
+    margin-top: rem(25px);
+    cursor: pointer;
+    color: $white;
+    background-color: $orange-700;
+    border: none;
+    border-radius: rem(4px);
+    text-transform: uppercase;
+    &:hover {
+      color: $orange-700;
+      background-color: $white;
+      border: 1px solid $orange-700;
+    }
+  }
+}

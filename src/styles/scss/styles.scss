@@ -1,0 +1,59 @@
+$h1: 48px;
+$h1-md: 38px;
+$h2: 38px;
+$h2-md: 30px;
+$h3: 22px;
+$h3-md: 20px;
+$h4: 18px;
+$h5: 16px;
+$h6: 15px;
+
+// Font-Weight Variables
+$medium: 500;
+$semi_bold: 600;
+$bold: 700;
+$black: 900;
+
+// Font Variables
+$primary-font: "Inter", sans-serif;
+
+/// @type Length
+$max-width: 1920px !default;
+
+/// @prop {String} keys
+/// @prop {Map} values
+$breakpoints: (
+  "extra-small": 320px,
+  "small": 640px,
+  "medium": 768px,
+  "medium-small": 980px,
+  "large": 1024px,
+  "medium-large": 1080px,
+  "extra-large": 1281px,
+  "double-extra-large": 1536px,
+  "tripple-extra-large": 1920px,
+) !default;
+// 1. Configuration and helpers
+@import 
+ "modules/helpers",
+ "modules/normalize",
+ "modules/color",
+ "modules/fonts",
+ "modules/typography";
+
+// 2. Components
+@import 
+ "components/header",
+ "components/footer", 
+ "components/form",
+ "components/card",
+ "components/select",
+ "components/skeleton";
+// 3. templates
+@import 
+ "templates/home", 
+ "templates/single-page", 
+ "templates/list-page",
+ "templates/login",
+ "templates/cart",
+ "templates/checkout";

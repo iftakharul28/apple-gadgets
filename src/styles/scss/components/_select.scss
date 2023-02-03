@@ -1,0 +1,98 @@
+.select {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: rem(8px);
+  position: relative;
+  border: 1px solid #c7c7c7;
+  border-radius: rem(3px);
+  padding: 0;
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex: 1;
+    position: relative;
+    border-right: 1px solid #c7c7c7;
+    padding: rem(3px) rem(5px);
+    gap: rem(3px);
+  }
+  &__items {
+    display: flex;
+    align-items: center;
+    gap: rem(5px);
+    background-color: #f8f9fa;
+    padding: rem(3px) rem(5px);
+    border-radius: rem(3px);
+    cursor: pointer;
+  }
+  &__item-title {
+    font-size: rem(15px);
+  }
+  &__icon-wrapper {
+    padding: rem(8px);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+  }
+  &__icon {
+    height: rem(14px);
+    width: rem(14px);
+  }
+  &__input {
+    height: 100%;
+    border: none;
+    padding: rem(7px);
+    &:hover {
+      border: none;
+      outline: none;
+    }
+  }
+  &__items-hr {
+    height: 100%;
+    width: rem(2px);
+  }
+  &__option-wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    border: 1px solid #c7c7c7;
+    background-color: #fff;
+    padding-top: rem(5px);
+  }
+  &__options {
+    max-height: rem(200px);
+    width: 100%;
+    overflow-y: auto;
+  }
+  &__option {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    gap: rem(5px);
+    cursor: pointer;
+    padding: rem(5px) rem(15px);
+    &:hover {
+      background-color: #f8f9fa;
+    }
+  }
+  &__option-button {
+    border: none;
+    border-top: 1px solid #c7c7c7;
+    background: transparent;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(5px);
+    cursor: pointer;
+    padding: rem(7px) rem(15px);
+  }
+  &__form-row {
+    padding: 0 rem(6px);
+  }
+  &__option-form {
+  }
+}

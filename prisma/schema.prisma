@@ -1,0 +1,94 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+// Necessary for Next auth
+model Account {
+    id                String  @id @default(cuid())
+    userId            String  @db.VarChar(255)
+    type              String  @db.VarChar(255)
+    provider          String  @db.VarChar(255)
+    providerAccountId String  @db.VarChar(255)
+    refresh_token     String? @db.Text
+    access_token      String? @db.Text
+    expires_at        Int?
+    token_type        String? @db.Text
+    scope             String? @db.Text
+    id_token          String? @db.Text
+    session_state     String? @db.Text
+    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([provider, providerAccountId])
+}
+
+model Session {
+    id           String   @id @default(cuid())
+    sessionToken String   @unique @db.VarChar(255)
+    userId       String   @db.VarChar(255)
+    expires      DateTime
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+    id            String    @id @default(cuid())
+    name          String?   @db.VarChar(255)
+    email         String?   @unique @db.VarChar(255)
+    password      String?   @db.VarChar(255)
+    emailVerified DateTime?
+    image         String?   @db.VarChar(255)
+    accounts      Account[]
+    sessions      Session[]
+    posts         Product[]
+}
+
+model VerificationToken {
+    identifier String
+    token      String   @unique @db.VarChar(255)
+    expires    DateTime
+
+    @@unique([identifier, token])
+}
+
+model Product {
+    id          String     @id @default(cuid())
+    title       String?    @db.VarChar(255)
+    image       String?    @db.VarChar(255)
+    description String?    @db.Text
+    price       Int?
+    published   Boolean    @default(false)
+    variants    Variant[]
+    category    Category[]
+    userId      String     @db.VarChar(255)
+    user        User       @relation(fields: [userId], references: [id])
+    createdAt   DateTime   @default(now()) @map(name: "created_at")
+    updatedAt   DateTime   @updatedAt @map(name: "updated_at")
+}
+
+model Variant {
+    id        String    @id @default(cuid())
+    color     String?   @db.VarChar(255)
+    colorCode String?   @db.VarChar(255)
+    image     String?   @db.VarChar(255)
+    size      String?   @db.VarChar(255)
+    storage   String?   @db.VarChar(255)
+    price     Int?
+    totalQty  Int?      @default(0)
+    brand     String?
+    product   Product[]
+}
+
+model Category {
+    id        String    @id @default(cuid())
+    name      String    @unique @db.VarChar(255)
+    product   Product[]
+    createdAt DateTime  @default(now()) @map(name: "created_at")
+    updatedAt DateTime  @updatedAt @map(name: "updated_at")
+}

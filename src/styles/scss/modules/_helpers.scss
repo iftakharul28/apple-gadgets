@@ -1,0 +1,110 @@
+// -----------------------------------------------------------------------------
+// This file contains CSS helper classes.
+// -----------------------------------------------------------------------------
+
+$browser-context: 16px; // Default
+
+@function rem($pixels, $context: $browser-context) {
+  @return $pixels/$context * 1rem;
+}
+// meadia query mixin with breakpoints//
+@mixin mq($breakpoint) {
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    //Build the media query
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $breakpoint) {
+      @content;
+    }
+  }
+}
+/**
+ * Clear inner floats
+ */
+.clearfix::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 rem(8px);
+  @include mq(medium-large) {
+    padding: 0 rem(16px);
+    max-width: rem(1280px);
+  }
+  @include mq(tripple-extra-large) {
+    max-width: rem(1420px);
+  }
+}
+.hide-text {
+  overflow: hidden;
+  padding: 0; /* 1 */
+  text-indent: 101%;
+  white-space: nowrap;
+}
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.scrollbar-hidden {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+/* ===== Scrollbar CSS ===== */
+.scrollbar-style {
+  scrollbar-width: thin;
+  scrollbar-color: #c0c0c0 #fff;
+  &::-webkit-scrollbar {
+    width: rem(12px);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #fff;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #c0c0c0;
+    border-radius: rem(7px);
+    border: rem(3px) solid #fff;
+  }
+}
+@keyframes shine {
+  0%,
+  5% {
+    transform: translateZ(0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes shineLoading {
+  to {
+    background-position-x: -200%;
+  }
+}
+@keyframes dualRing {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

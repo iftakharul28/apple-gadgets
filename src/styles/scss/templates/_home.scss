@@ -1,0 +1,10 @@
+.home {
+  margin: rem(40px) 0 0;
+  &__products {
+    @include mq(medium) {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: rem(15px);
+    }
+  }
+}

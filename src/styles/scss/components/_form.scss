@@ -1,0 +1,149 @@
+.form {
+  &__row {
+    @include mq(650px) {
+      display: flex;
+      align-items: center;
+      gap: rem(8px);
+    }
+  }
+  &__input-group {
+    margin-bottom: rem(15px);
+    position: relative;
+    flex: 1;
+    margin-top: auto;
+    @include mq(medium) {
+      margin-bottom: rem(10px);
+    }
+    span {
+      color: $red-700;
+    }
+  }
+  &__label {
+    font-size: rem(16px);
+    font-weight: 500;
+    color: $gray-700;
+  }
+  &__input {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    -moz-appearance: textfield;
+    font-size: rem(14px);
+    font-weight: 500;
+    line-height: 1.4;
+    color: #002c36;
+    width: 100%;
+    margin-top: rem(5px);
+    padding: rem(8px);
+    border: 1px solid #c7c7c7;
+    border-radius: rem(3px);
+    &:focus {
+      outline: none;
+    }
+    &--red {
+      border: 1px solid $red-700;
+    }
+  }
+  &__textarea {
+    resize: none;
+    border: 0;
+    padding: 0;
+    height: rem(250px);
+    width: 100%;
+    display: inline-block;
+    border: 1px solid #c7c7c7;
+    &:focus {
+      outline: none;
+    }
+    &--red {
+      border: 1px solid $red-700;
+    }
+  }
+  &__select {
+    color: #002c36;
+    width: 100%;
+    margin-top: rem(5px);
+    padding: rem(8px);
+    border: 1px solid #c7c7c7;
+    border-radius: rem(3px);
+  }
+  &__checkbox-row {
+    margin: rem(10px) 0 rem(15px);
+    display: flex;
+    align-items: center;
+    gap: rem(30px);
+  }
+  &__checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: rem(5px);
+  }
+  &__checkbox-input {
+    position: relative;
+    appearance: none;
+    width: rem(42px);
+    height: rem(20px);
+    background: #ccc;
+    border-radius: rem(20px);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: 0.4s;
+    &:checked {
+      background: #7da6ff;
+    }
+    &::after {
+      position: absolute;
+      content: "";
+      width: rem(20px);
+      height: rem(20px);
+      top: 0;
+      left: 0;
+      background: $white;
+      border-radius: 50%;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      transform: scale(1.1);
+      transition: 0.4s;
+    }
+    &:checked::after {
+      left: 50%;
+    }
+  }
+  &__popup {
+    position: fixed;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba($gray-400, 0.2);
+    display: grid;
+    place-items: center;
+    z-index: 99;
+  }
+  &__popup-wrapper {
+    height: rem(350px);
+    width: rem(650px);
+    padding: rem(20px);
+    background-color: $white;
+  }
+  &__button {
+    font-size: rem(15px);
+    font-weight: 600;
+    width: 100%;
+    height: rem(42px);
+    margin-top: rem(25px);
+    cursor: pointer;
+    color: $white;
+    background-color: $orange-700;
+    border: none;
+    border-radius: rem(4px);
+    text-transform: uppercase;
+    &--secondery {
+      &:hover {
+        color: $orange-700;
+        background-color: $white;
+        border: 1px solid $orange-700;
+      }
+    }
+  }
+}

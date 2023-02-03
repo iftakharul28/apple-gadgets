@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: rem(16px);
+  line-height: 1.4;
+  font-weight: normal;
+}
+
+body {
+  font-family: "SF-Pro-Display", sans-serif;
+  font-style: normal;
+  position: relative;
+  overflow-x: hidden !important;
+}
+.body--fixed {
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+.h1 {
+  font-size: $h1;
+  @include mq(medium) {
+    font-size: $h1-md;
+  }
+}
+h2,
+.h2 {
+  font-size: $h2;
+  @include mq(medium) {
+    font-size: $h2-md;
+  }
+}
+h3,
+.h3 {
+  font-size: $h3;
+  @include mq(medium) {
+    font-size: $h3-md;
+  }
+}
+h4,
+.h4 {
+  font-size: $h4;
+}
+h5,
+.h5 {
+  font-size: $h5;
+}
+h6,
+.h6 {
+  font-size: $h6;
+}
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  // color: $primary-text;
+  font-weight: $medium;
+  line-height: 1.4;
+}
+// p {
+//    color: $secondary_text;
+// }
+a:focus,
+button:focus {
+  outline: 0;
+}
+a {
+  // color: $primary_text;
+  text-decoration: none;
+}
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style-position: inside;
+  // color: $secondary_text;
+}

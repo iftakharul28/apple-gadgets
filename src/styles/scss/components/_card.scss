@@ -1,0 +1,24 @@
+.card {
+  &__wrapper {
+    display: block;
+  }
+  &__image-wrapper {
+    width: rem(145px);
+    margin: 0 auto;
+  }
+  &__image {
+    height: auto;
+    width: 100%;
+  }
+  &__heading,
+  &__text {
+    font-size: rem(13px);
+    font-weight: 600;
+    color: $dark-700;
+    margin: rem(10px) 0 rem(5px);
+    text-align: center;
+  }
+  &__text {
+    color: $dark-600;
+  }
+}

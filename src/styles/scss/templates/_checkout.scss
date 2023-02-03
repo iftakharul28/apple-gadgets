@@ -1,0 +1,115 @@
+.checkout {
+  &__wrappper {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: rem(25px);
+    margin: rem(45px) 0 rem(30px);
+  }
+  &__heading {
+    border-top-left-radius: rem(4px);
+    border-top-right-radius: rem(4px);
+    font-size: rem(22px);
+    font-weight: 600;
+    color: $dark-700;
+    background-color: $gray-300;
+    margin: 0;
+    padding: rem(8px) rem(10px);
+  }
+  &__form {
+    grid-column: span 2;
+  }
+  &__product-title {
+    font-size: rem(22px);
+    font-weight: 500;
+    color: $dark-700;
+  }
+  &__product-text {
+    font-size: rem(18px);
+    font-weight: 500;
+    color: $dark-600;
+    &--secondery {
+      font-size: rem(16px);
+      color: $orange-600;
+    }
+  }
+  &__table {
+    height: max-content;
+    box-shadow: -1px 4px 5px 0px rgba($dark-600, 0.1);
+  }
+  &__table-wrapper {
+    padding: rem(15px);
+  }
+  &__table-form {
+    display: flex;
+    background-color: $white;
+    border: 1px solid $gray-400;
+    border-radius: rem(3px);
+  }
+  &__table-form-input {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    border-top-left-radius: rem(3px);
+    border-bottom-left-radius: rem(3px);
+    font-size: rem(18px);
+    font-weight: 400;
+    line-height: 1.4;
+    width: 100%;
+    padding: rem(6px);
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__table-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: rem(6px) rem(12px);
+  }
+  &__table-title {
+    font-size: rem(16px);
+    font-weight: 500;
+    color: $dark-600;
+    text-align: center;
+  }
+  &__table-text {
+    font-size: rem(13px);
+    color: $dark-300;
+    text-align: center;
+    padding: rem(6px) 0;
+  }
+  &__table-hr {
+    height: 0;
+    border: none;
+    border-top: 1px solid $dark-200;
+    margin: rem(8px) 0;
+    &--secondery {
+      border-top: 1px dotted $dark-200;
+    }
+  }
+  &__button {
+    font-size: rem(15px);
+    font-weight: 600;
+    width: 100%;
+    height: rem(38px);
+    cursor: pointer;
+    color: $white;
+    background-color: $orange-700;
+    border: none;
+    border-radius: rem(4px);
+    text-transform: uppercase;
+    &--secondery {
+      height: rem(42px);
+      margin-top: rem(25px);
+      &:hover {
+        color: $orange-700;
+        background-color: $white;
+        border: 1px solid $orange-700;
+      }
+    }
+  }
+}
