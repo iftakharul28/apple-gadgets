@@ -150,6 +150,10 @@ const PostForm = ({ categories }: { categories?: CategoryType[] }) => {
           name="description"
           id="description"
           className="form__textarea"
+          onChange={(e) =>
+            setProduct({ ...product, description: e.target.value })
+          }
+          value={product?.description ? product?.description : ""}
           cols={30}
           rows={10}></textarea>
       </div>
