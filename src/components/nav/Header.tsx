@@ -113,7 +113,7 @@ export default function Header() {
                     ) : (
                       <img
                         className="header__top-link-image"
-                        src={userData?.user.image || ""}
+                        src="/user.webp"
                         alt="gift"
                       />
                     )}

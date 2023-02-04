@@ -51,13 +51,13 @@ const MobileNav = () => {
                 <img
                   className="header__user-image"
                   src={userData?.user.image || ""}
-                  alt="gift"
+                  alt={userData?.user.name || ""}
                 />
               ) : (
                 <img
                   className="header__top-link-image"
-                  src={userData?.user.image || ""}
-                  alt="gift"
+                  src="/user.webp"
+                  alt={userData?.user.name || ""}
                 />
               )}
               <p className="mobile-nav__text">{userData.user.name}</p>
