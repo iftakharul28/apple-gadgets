@@ -1,12 +1,11 @@
-import type { VariantFormProps, VariantType } from "@/types";
 import { useState } from "react";
-
+import type { VariantFormProps, VariantType } from "@/types";
 const VarientForm = ({
   item,
   variant,
   setVariant,
-  setShowVariant,
-}: VariantFormProps) => {
+}: // setShowVariant,
+VariantFormProps) => {
   const [addVariant, setAddVariant] = useState<VariantType>(item);
   return (
     <div>

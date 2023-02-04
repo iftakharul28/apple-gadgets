@@ -10,7 +10,6 @@ type productType = {
   description: string | null;
   price: number | null;
   published: boolean;
-
   category: Category[];
   color: Color[];
   storage: Storage[];
@@ -48,7 +47,7 @@ const ProductAction = ({ product }: { product: productType | null }) => {
     if (key === "add") {
       setAddCard({
         ...addCard,
-        qty: addCard?.qty ? Number(addCard?.qty) + 1 : 1,
+        qty: addCard?.qty ? addCard?.qty + 1 : 1,
       });
     }
     if (key === "update") {
@@ -95,7 +94,7 @@ const ProductAction = ({ product }: { product: productType | null }) => {
           storage: selectedStorage?.storage || "",
           price: Number(selectedStorage?.price),
           qty: addCard?.qty,
-          total: Number(addCard?.qty) * Number(selectedStorage?.price),
+          total: addCard?.qty * Number(selectedStorage?.price),
         });
       }
     }
