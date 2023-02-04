@@ -104,11 +104,19 @@ export default function Header() {
                         redirect: true,
                       })
                     }>
-                    <img
-                      className="header__top-link-image"
-                      src="/user.webp"
-                      alt="gift"
-                    />
+                    {userData?.user.image ? (
+                      <img
+                        className="header__user-image"
+                        src={userData?.user.image || ""}
+                        alt="gift"
+                      />
+                    ) : (
+                      <img
+                        className="header__top-link-image"
+                        src={userData?.user.image || ""}
+                        alt="gift"
+                      />
+                    )}
                     <div className="header__top-text-wrapper">
                       <p className="header__top-text">{userData.user.name}</p>
                       <p className="header__top-text">Logout</p>

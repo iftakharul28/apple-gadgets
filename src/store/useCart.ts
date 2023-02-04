@@ -47,7 +47,7 @@ type useCartType = {
 
 const useCart = create(
   persist<useCartType>(
-    (set, get) => ({
+    (set) => ({
       cart: 0,
       cartList: [],
       updateCart: () => {

@@ -17,17 +17,20 @@ const LoginForm = () => {
   async function onSubmit(values: loginValidation) {
     console.log(values);
     const status = await signIn("credentials", {
-      redirect: false,
+      redirect: true,
       email: values?.email,
       password: values?.password,
-      callbackUrl: "/",
+      callbackUrl: "/dashboard",
     });
     if (status?.ok) {
       router.push(status?.url || "");
     }
   }
   async function handleGoogleSignin() {
-    signIn("google", { callbackUrl: "/" });
+    signIn("google", {
+      redirect: true,
+      callbackUrl: "/dashboard",
+    });
   }
   return (
     <form

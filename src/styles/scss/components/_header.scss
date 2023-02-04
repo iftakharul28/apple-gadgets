@@ -73,6 +73,11 @@
     width: rem(27px);
     height: rem(27px);
   }
+  &__user-image {
+    width: rem(35px);
+    height: rem(35px);
+    border-radius: 50%;
+  }
   &__top-link-wrappper {
     display: flex;
     align-items: center;

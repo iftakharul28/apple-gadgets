@@ -47,11 +47,19 @@ const MobileNav = () => {
                   redirect: true,
                 })
               }>
-              <img
-                className="header__top-link-image"
-                src="/user.webp"
-                alt="gift"
-              />
+              {userData?.user.image ? (
+                <img
+                  className="header__user-image"
+                  src={userData?.user.image || ""}
+                  alt="gift"
+                />
+              ) : (
+                <img
+                  className="header__top-link-image"
+                  src={userData?.user.image || ""}
+                  alt="gift"
+                />
+              )}
               <p className="mobile-nav__text">{userData.user.name}</p>
             </button>
           ) : (
