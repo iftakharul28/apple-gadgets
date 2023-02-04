@@ -1,9 +1,12 @@
 .cart {
   &__wrappper {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: rem(25px);
-    margin: rem(45px) 0 rem(30px);
+    margin: rem(45px) 0 rem(95px);
+    @include mq(medium-large) {
+      margin: rem(45px) 0 rem(30px);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: rem(25px);
+    }
   }
   &__product {
     border-radius: rem(4px);
@@ -19,8 +22,10 @@
     }
   }
   &__product-wrapper {
-    display: flex;
-    gap: rem(20px);
+    @include mq(medium) {
+      display: flex;
+      gap: rem(20px);
+    }
     &:not(:last-child) {
       margin-bottom: rem(15px);
     }
@@ -42,17 +47,17 @@
     margin: rem(3px) 0;
   }
   &__product-title {
-    font-size: rem(22px);
+    font-size: rem(20px);
     font-weight: 500;
     color: $dark-700;
   }
   &__product-text {
-    font-size: rem(18px);
+    font-size: rem(16px);
     font-weight: 500;
     color: $dark-600;
     &--secondery {
       font-size: rem(16px);
-      color: $orange-600;
+      color: $orange-500;
     }
   }
   &__product-details {
@@ -84,9 +89,16 @@
     width: rem(20px);
   }
   &__table {
+    margin-top: rem(25px);
+    @include mq(medium) {
+      margin-top: 0;
+    }
+  }
+  &__table-wrapper {
     padding: rem(15px);
     height: max-content;
-    box-shadow: -1px 4px 5px 0px rgba($dark-600, 0.1);
+    box-shadow: -1px -2px 5px 0px rgba($dark-600, 0.2);
+    border-radius: rem(4px);
   }
   &__table-box {
     display: flex;

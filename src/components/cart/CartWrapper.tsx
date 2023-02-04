@@ -22,34 +22,42 @@ const CartWrapper = () => {
       <div className="cart__product">
         <h1 className="cart__product-heading">Products</h1>
         <div className="cart__product-list">
-          {totalCart?.map((item, i) => (
-            <CartList item={item} key={i} />
-          ))}
+          {totalCart.length > 0 ? (
+            <>
+              {totalCart?.map((item, i) => (
+                <CartList item={item} key={i} />
+              ))}
+            </>
+          ) : (
+            <p className="cart__table-text">Start adding items to your cart</p>
+          )}
         </div>
       </div>
       <div className="cart__table">
-        <p className="cart__table-title">Your Cart ({total})</p>
-        <p className="cart__table-text">Start adding items to your cart</p>
-        <p className="cart__table-title">Price Details</p>
-        <hr className="cart__table-hr" />
-        <div className="cart__table-box">
-          <p className="cart__table-title--secondery">Price</p>
-          <p className="cart__table-title">BDT {totalCost}</p>
+        <div className="cart__table-wrapper">
+          <p className="cart__table-title">Your Cart ({total})</p>
+          <p className="cart__table-text">Start adding items to your cart</p>
+          <p className="cart__table-title">Price Details</p>
+          <hr className="cart__table-hr" />
+          <div className="cart__table-box">
+            <p className="cart__table-title--secondery">Price</p>
+            <p className="cart__table-title">BDT {totalCost}</p>
+          </div>
+          <div className="cart__table-box">
+            <p className="cart__table-title--secondery">Delivery Charges</p>
+            <p className="cart__table-text">(will be added)</p>
+          </div>
+          <hr className="cart__table-hr cart__table-hr--secondery" />
+          <div className="cart__table-box">
+            <p className="cart__table-title--secondery">Total Amount</p>
+            <p className="cart__table-title">BDT {totalCost}</p>
+          </div>
+          <Link href="checkout">
+            <button type="button" className="cart__button">
+              Check out
+            </button>
+          </Link>
         </div>
-        <div className="cart__table-box">
-          <p className="cart__table-title--secondery">Delivery Charges</p>
-          <p className="cart__table-text">(will be added)</p>
-        </div>
-        <hr className="cart__table-hr cart__table-hr--secondery" />
-        <div className="cart__table-box">
-          <p className="cart__table-title--secondery">Total Amount</p>
-          <p className="cart__table-title">BDT {totalCost}</p>
-        </div>
-        <Link href="checkout">
-          <button type="button" className="cart__button">
-            Check out
-          </button>
-        </Link>
       </div>
     </div>
   );

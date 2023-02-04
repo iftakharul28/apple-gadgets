@@ -1,6 +1,5 @@
 import { Header, MobileNav } from "@/components/index";
 import type { siteType } from "@/types/index";
-import { useState } from "react";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
 const Site = ({ children }: siteType) => {
