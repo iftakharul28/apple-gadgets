@@ -174,6 +174,13 @@ export const productRouter = createTRPCRouter({
       where: {
         published: true,
       },
+      select: {
+        id: true,
+        title: true,
+        price: true,
+        image: true,
+        published: true,
+      },
       orderBy: {
         createdAt: "desc",
       },
@@ -184,6 +191,13 @@ export const productRouter = createTRPCRouter({
   getRecrentProduct: publicProcedure.query(async ({ ctx }) => {
     const result = await ctx.prisma.product.findMany({
       where: {
+        published: true,
+      },
+      select: {
+        id: true,
+        title: true,
+        price: true,
+        image: true,
         published: true,
       },
       orderBy: {
