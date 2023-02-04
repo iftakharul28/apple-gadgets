@@ -6,7 +6,7 @@ const DetailsSkeleton = () => {
       <div className="container">
         <div className="product__main">
           <div className="product__image-wrapper skeleton__image-wrapper--secondery">
-            <img className="skeleton__image skeleton__image--secondery" />
+            <div className="skeleton__image skeleton__image--secondery"></div>
           </div>
           <div className="product__details-wrapper">
             <h1 className="product__heading skeleton__heading"></h1>
