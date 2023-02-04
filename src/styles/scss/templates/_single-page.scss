@@ -37,11 +37,28 @@
     font-weight: 600;
     color: $dark-400;
   }
-  &__color-wrapper {
+  &__color-wrapper,
+  &__storage-wrapper {
     display: flex;
     align-items: center;
     gap: rem(15px);
     margin: rem(20px) 0 rem(15px);
+  }
+  &__storage-wrapper {
+    margin: rem(15px) 0;
+  }
+  &__storage {
+    padding: rem(6px) rem(8px);
+    background-color: $gray-200;
+    border-radius: rem(4px);
+    &--active {
+      background-color: $orange-500;
+    }
+  }
+  &__storage-text {
+    font-size: rem(14px);
+    font-weight: 600;
+    color: $dark-700;
   }
   &__color {
     height: rem(32px);

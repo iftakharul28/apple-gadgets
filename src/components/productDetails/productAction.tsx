@@ -1,25 +1,19 @@
 import { useCart } from "@/store";
-import type { Variant } from "@prisma/client";
+import type { Category, Color, Storage } from "@prisma/client";
 import { ChangeEvent, useState } from "react";
 import { Count } from "@/components";
 type productType = {
   id: string;
   image: string | null;
-  variants: {
-    id: string;
-    image: string | null;
-    price: number | null;
-    color: string | null;
-    colorCode: string | null;
-    size: string | null;
-    storage: string | null;
-    totalQty: number | null;
-    brand: string | null;
-  }[];
   title: string | null;
+  brand: string | null;
   description: string | null;
   price: number | null;
   published: boolean;
+
+  category: Category[];
+  color: Color[];
+  storage: Storage[];
 };
 type cardType = {
   price?: number;
@@ -31,7 +25,8 @@ const ProductAction = ({ product }: { product: productType | null }) => {
   const addCartList = useCart((state) => state?.addCartList);
   const updateCartList = useCart((state) => state?.updateCartList);
   const cartList = useCart((state) => state?.cartList);
-  const [selected, setSelected] = useState(product?.variants[0]);
+  const [selectedColor, setSelectedColor] = useState(product?.color[0]);
+  const [selectedStorage, setSelectedStorage] = useState(product?.storage[0]);
   const [addCard, setAddCard] = useState<cardType>({
     price: 0,
     qty: 1,
@@ -39,7 +34,13 @@ const ProductAction = ({ product }: { product: productType | null }) => {
   });
   const ActiveProduct = (id: string) => {
     if (id) {
-      setSelected(product?.variants.find((el) => el.id === id));
+      setSelectedColor(product?.color.find((el) => el.id === id));
+    }
+    return "";
+  };
+  const ActiveStorage = (id: string) => {
+    if (id) {
+      setSelectedStorage(product?.storage.find((el) => el.id === id));
     }
     return "";
   };
@@ -66,39 +67,35 @@ const ProductAction = ({ product }: { product: productType | null }) => {
       console.log(type);
     }
     if (type === "card") {
-      if (selected) {
-        const find = cartList.some((item) => item.id == selected?.id);
+      if (selectedColor) {
+        const find = cartList.some((item) => item.id == selectedColor?.id);
         console.log(find);
         if (!find) {
           updateCart();
           addCartList({
-            id: selected?.id,
+            productId: product?.id,
+            id: selectedColor?.id,
             title: product?.title,
-            brand: selected?.brand || "",
-            image: selected?.image || "",
-            color: selected?.color || "",
-            size: selected?.size || "",
-            storage: selected?.storage || "",
-            price: Number(selected?.price),
+            image: selectedColor?.image || "",
+            brand: product?.brand || "",
+            color: selectedColor?.color || "",
+            storage: selectedStorage?.storage || "",
+            price: Number(selectedStorage?.price),
             qty: addCard?.qty,
-            total: Number(addCard?.qty) * Number(selected?.price),
+            total: Number(addCard?.qty) * Number(selectedStorage?.price),
           });
         }
-
-        // let array = [...cardList];
-        // const index = array.findIndex((item) => item.id === selected?.id);
-        // console.log(index);
         updateCartList({
-          id: selected?.id,
+          productId: product?.id,
+          id: selectedColor?.id,
           title: product?.title,
-          brand: selected?.brand || "",
-          image: selected?.image || "",
-          color: selected?.color || "",
-          size: selected?.size || "",
-          storage: selected?.storage || "",
-          price: Number(selected?.price),
+          brand: product?.brand || "",
+          image: selectedColor?.image || "",
+          color: selectedColor?.color || "",
+          storage: selectedStorage?.storage || "",
+          price: Number(selectedStorage?.price),
           qty: addCard?.qty,
-          total: Number(addCard?.qty) * Number(selected?.price),
+          total: Number(addCard?.qty) * Number(selectedStorage?.price),
         });
       }
     }
@@ -108,7 +105,7 @@ const ProductAction = ({ product }: { product: productType | null }) => {
       <div className="product__image-wrapper">
         <img
           className="product__image"
-          src={selected?.image || ""}
+          src={selectedColor?.image || ""}
           alt={product?.title || ""}
         />
       </div>
@@ -116,7 +113,9 @@ const ProductAction = ({ product }: { product: productType | null }) => {
         <div className="product__details-card-wrapper">
           <div className="product__details-card">
             <p className="product__details-card-title">Cash Discount Price:</p>
-            <p className="product__details-card-text">{product?.price}</p>
+            <p className="product__details-card-text">
+              {selectedStorage?.price}
+            </p>
           </div>
           <div className="product__details-card">
             <p className="product__details-card-title">Cash Discount Price:</p>
@@ -124,22 +123,36 @@ const ProductAction = ({ product }: { product: productType | null }) => {
           </div>
           <div className="product__details-card">
             <p className="product__details-card-title">Brand:</p>
-            <p className="product__details-card-text">Apple</p>
+            <p className="product__details-card-text">{product?.brand}</p>
           </div>
+        </div>
+        <div className="product__storage-wrapper">
+          <p>storage:</p>
+          {product?.storage.map(({ id, storage }: Storage, i: number) => (
+            <div
+              key={i}
+              role="button"
+              onClick={() => ActiveStorage(id)}
+              className={
+                selectedStorage?.id === id
+                  ? "product__storage product__storage--active"
+                  : "product__storage"
+              }
+              title={storage || ""}>
+              <p className="product__storage-text">{storage}</p>
+            </div>
+          ))}
         </div>
         <div className="product__color-wrapper">
           <p>color:</p>
-          {product?.variants.map(
-            (
-              { id, color, colorCode, size, price, image }: Variant,
-              i: number
-            ) => (
+          {product?.color.map(
+            ({ id, color, colorCode, price, image }: Color, i: number) => (
               <div
                 key={i}
                 role="button"
                 onClick={() => ActiveProduct(id)}
                 className={
-                  selected?.id === id
+                  selectedColor?.id === id
                     ? "product__color product__color--active"
                     : "product__color "
                 }

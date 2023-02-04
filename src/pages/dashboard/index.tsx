@@ -6,12 +6,14 @@ const DashBoard = () => {
   const { data: categories } = api.category.getCategory.useQuery();
 
   return (
-    <Layout title="Posts">
+    <Layout title="Product Form">
       <div className="posts">
-        <div className="posts__heading-wrapper">
-          <h2 className="posts__heading">Posts Information</h2>
+        <div className="container">
+          <div className="posts__heading-wrapper">
+            <h2 className="posts__heading">Product Form</h2>
+          </div>
+          <PostForm categories={categories} />
         </div>
-        <PostForm categories={categories} />
       </div>
     </Layout>
   );

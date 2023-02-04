@@ -39,6 +39,7 @@ export type PaginationType = {
 export type ProductType = {
   title?: string | null;
   image?: string | null;
+  brand?: string | null;
   description?: string | null;
   price?: number | null;
   published?: boolean;
@@ -47,10 +48,32 @@ export type CategoryType = {
   id?: string;
   name: string | null;
 };
+export type ColorType = {
+  id?: string;
+  color: string | null;
+  colorCode: string | null;
+  image: string | null;
+  price: number | null;
+  totalQty: number | null;
+};
+export type StorageType = {
+  id?: string;
+  storage: string | null;
+  price: number | null;
+  totalQty: number | null;
+};
 export type CategoryProps = {
   setCategory: Dispatch<SetStateAction<CategoryType[]>>;
   categories?: CategoryType[];
   category: CategoryType[];
+};
+export type ColorProps = {
+  setColor: Dispatch<SetStateAction<ColorType[]>>;
+  color: ColorType[];
+};
+export type StorageProps = {
+  setStorage: Dispatch<SetStateAction<StorageType[]>>;
+  storage: StorageType[];
 };
 export type VariantType = {
   id?: string | null;

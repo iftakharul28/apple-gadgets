@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import { useFormik } from "formik";
 import { loginValidate } from "@/lib/validate";
+import { getBaseUrl } from "@/utils/api";
 const LoginForm = () => {
   const router = useRouter();
   // formik hook
@@ -20,14 +21,14 @@ const LoginForm = () => {
       redirect: false,
       email: values?.email,
       password: values?.password,
-      callbackUrl: "http://localhost:3000",
+      callbackUrl: "/",
     });
     if (status?.ok) {
       router.push(status?.url || "");
     }
   }
   async function handleGoogleSignin() {
-    signIn("google", { callbackUrl: "http://localhost:3000" });
+    signIn("google", { callbackUrl: "/" });
   }
   return (
     <form

@@ -1,22 +1,29 @@
 import { useState } from "react";
 import { api } from "@/utils/api";
-import { CategorySelect, VarientForm, VarientSelect } from "@/components/index";
-import type { VariantType, ProductType, CategoryType } from "@/types/index";
+import { CategorySelect, ColorSelect, StorageSelect } from "@/components/index";
+import type {
+  ColorType,
+  StorageType,
+  ProductType,
+  CategoryType,
+} from "@/types/index";
 const PostForm = ({ categories }: { categories?: CategoryType[] }) => {
   const [product, setProduct] = useState<ProductType | null>({
     title: "",
     description: "",
+    brand: "",
     price: 0,
     published: false,
   });
-  const [variant, setVariant] = useState<VariantType[]>([]);
-  const [showVariant, setShowVariant] = useState<boolean>(false);
   const [category, setCategory] = useState<CategoryType[]>([]);
+  const [color, setColor] = useState<ColorType[]>([]);
+  const [storage, setStorage] = useState<StorageType[]>([]);
   const { mutate: addPost } = api.product.addProduct.useMutation({
     onSuccess(data) {
       setProduct({
         title: "",
         description: "",
+        brand: "",
         price: 0,
         published: false,
       });
@@ -27,7 +34,6 @@ const PostForm = ({ categories }: { categories?: CategoryType[] }) => {
       console.error(e);
     },
   });
-  console.log(variant);
   return (
     <form className="form login__card-body" role="form">
       <div className="form__row">
@@ -65,16 +71,6 @@ const PostForm = ({ categories }: { categories?: CategoryType[] }) => {
       </div>
       <div className="form__row">
         <div className="form__input-group">
-          <label htmlFor="category" className="form__label">
-            Category
-          </label>
-          <CategorySelect
-            categories={categories}
-            category={category}
-            setCategory={setCategory}
-          />
-        </div>
-        <div className="form__input-group">
           <label htmlFor="image" className="form__label">
             Image
           </label>
@@ -89,47 +85,62 @@ const PostForm = ({ categories }: { categories?: CategoryType[] }) => {
             value={product?.image ? product?.image : ""}
           />
         </div>
-      </div>
-      {variant?.map((item, i) => (
-        <VarientForm
-          item={item}
-          variant={variant}
-          setShowVariant={setShowVariant}
-          setVariant={setVariant}
-          key={i}
-        />
-      ))}
-      {showVariant ? (
-        <div className="form__input-group form__popup">
-          <div className="form__popup-wrapper">
-            <h2>Varient</h2>
-            <VarientSelect
-              variant={variant}
-              setVariant={setVariant}
-              setShowVariant={setShowVariant}
-            />
-          </div>
+        <div className="form__input-group">
+          <label htmlFor="brand" className="form__label">
+            Brand
+          </label>
+          <input
+            className="form__input"
+            type="text"
+            name="brand"
+            placeholder="Product Brand"
+            id="brand"
+            required
+            onChange={(e) => setProduct({ ...product, brand: e.target.value })}
+            value={product?.brand ? product?.brand : ""}
+          />
         </div>
-      ) : (
-        <button type="button" onClick={() => setShowVariant(true)}>
-          Add Varient
-        </button>
-      )}
-
-      <div className="form__input-group form__checkbox-group">
-        <label htmlFor="publish" className="form__label">
-          Published
-        </label>
-        <input
-          type="checkbox"
-          id="publish"
-          name="publish"
-          className="form__checkbox-input"
-          checked={product?.published}
-          onChange={() =>
-            setProduct({ ...product, published: !product?.published })
-          }
-        />
+      </div>
+      <div className="form__row">
+        <div className="form__input-group">
+          <label htmlFor="color" className="form__label">
+            Color
+          </label>
+          <ColorSelect color={color} setColor={setColor} />
+        </div>
+        <div className="form__input-group">
+          <label htmlFor="storage" className="form__label">
+            Storage
+          </label>
+          <StorageSelect storage={storage} setStorage={setStorage} />
+        </div>
+      </div>
+      <div className="form__row">
+        <div className="form__input-group">
+          <label htmlFor="category" className="form__label">
+            Category
+          </label>
+          <CategorySelect
+            categories={categories}
+            category={category}
+            setCategory={setCategory}
+          />
+        </div>
+        <div className="form__input-group form__checkbox-group">
+          <label htmlFor="publish" className="form__label">
+            Published
+          </label>
+          <input
+            type="checkbox"
+            id="publish"
+            name="publish"
+            className="form__checkbox-input"
+            checked={product?.published}
+            onChange={() =>
+              setProduct({ ...product, published: !product?.published })
+            }
+          />
+        </div>
       </div>
       <div className="form__input-group">
         <label htmlFor="description" className="form__label">
@@ -146,7 +157,7 @@ const PostForm = ({ categories }: { categories?: CategoryType[] }) => {
         type="button"
         className="form__button"
         onClick={() => {
-          addPost({ ...product, variant, category });
+          addPost({ ...product, color, storage, category });
         }}>
         post
       </button>

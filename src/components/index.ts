@@ -1,6 +1,6 @@
 export { default as Header } from "./nav/Header";
 export { default as RegisterForm } from "./form/RegisterForm";
-export { default as VarientForm } from "./form/VarientForm";
+export { default as ColorForm } from "./form/ColorForm";
 export { default as PostForm } from "./form/PostForm";
 export { default as LoginForm } from "./form/LoginForm";
 export { default as ProfileForm } from "./form/ProfileForm";
@@ -12,6 +12,6 @@ export { default as ProductAction } from "./productDetails/productAction";
 export { default as Count } from "./productDetails/Count";
 export { default as CartWrapper } from "./cart/CartWrapper";
 export { default as CartList } from "./cart/CartList";
-// export { default as  } from "./";
-// export { default as  } from "./";
+export { default as StorageSelect } from "./StorageSelect";
+export { default as ColorSelect } from "./ColorSelect";
 // export { default as  } from "./";

@@ -2,7 +2,9 @@ import { useState, type ChangeEvent } from "react";
 // import { Count } from "@/components";
 import { DeleteIcon } from "@/components/icons";
 import { useCart } from "@/store";
+import Link from "next/link";
 type cartListType = {
+  productId?: string;
   id?: string;
   title?: string | null;
   color?: string;
@@ -38,53 +40,57 @@ const CardList = ({ item }: { item: cartListType }) => {
     return;
   };
   return (
-    <div className="cart__product-wrapper" key={item?.id}>
-      <div className="cart__product-first-row">
-        <figure className="cart__product-image-wrapper">
-          <img
-            className="cart__product-image"
-            src={item?.image}
-            alt={item?.title || ""}
-          />
-        </figure>
-        {/* <Count AddToCard={AddToCard} qty={addCard?.qty} /> */}
-      </div>
-      <div className="cart__product-details">
-        <div className="cart__product-details-wrapper">
-          <h2 className="cart__product-title">{item?.title}</h2>
-          <div className="cart__product-box">
-            <p className="cart__product-text">Brad: </p>
-            <p className="cart__product-text cart__product-text--secondery">
-              {item?.brand}
-            </p>
+    <article className="cart__products" key={item?.id}>
+      <Link
+        className="cart__product-wrapper"
+        href={`/product/${item?.productId}`}>
+        <div className="cart__product-first-row">
+          <figure className="cart__product-image-wrapper">
+            <img
+              className="cart__product-image"
+              src={item?.image}
+              alt={item?.title || ""}
+            />
+          </figure>
+          {/* <Count AddToCard={AddToCard} qty={addCard?.qty} /> */}
+        </div>
+        <div className="cart__product-details">
+          <div className="cart__product-details-wrapper">
+            <h2 className="cart__product-title">{item?.title}</h2>
+            <div className="cart__product-box">
+              <p className="cart__product-text">Brad: </p>
+              <p className="cart__product-text cart__product-text--secondery">
+                {item?.brand}
+              </p>
+            </div>
+            <div className="cart__product-box">
+              <p className="cart__product-text">Color: </p>
+              <p className="cart__product-text cart__product-text--secondery">
+                {item?.color}
+              </p>
+            </div>
+            <div className="cart__product-box">
+              <p className="cart__product-text">Unit Price BDT :</p>
+              <p className="cart__product-text  cart__product-text--secondery">
+                {item?.price}
+              </p>
+            </div>
           </div>
-          <div className="cart__product-box">
-            <p className="cart__product-text">Color: </p>
-            <p className="cart__product-text cart__product-text--secondery">
-              {item?.color}
-            </p>
-          </div>
-          <div className="cart__product-box">
-            <p className="cart__product-text">Unit Price BDT :</p>
-            <p className="cart__product-text  cart__product-text--secondery">
-              {item?.price}
-            </p>
+          <div className="cart__product-action">
+            <button
+              type="button"
+              className="cart__product-remove"
+              onClick={() => {
+                deleteCartList(item?.id || "");
+                deleteCart();
+              }}>
+              <DeleteIcon className="cart__icon" />
+            </button>
+            <p className="cart__product-text">BDT {item?.total}</p>
           </div>
         </div>
-        <div className="cart__product-action">
-          <button
-            type="button"
-            className="cart__product-remove"
-            onClick={() => {
-              deleteCartList(item?.id || "");
-              deleteCart();
-            }}>
-            <DeleteIcon className="cart__icon" />
-          </button>
-          <p className="cart__product-text">BDT {item?.total}</p>
-        </div>
-      </div>
-    </div>
+      </Link>
+    </article>
   );
 };
 

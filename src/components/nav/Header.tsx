@@ -15,7 +15,7 @@ export default function Header() {
       <div className="header__top">
         <div className="container">
           <div className="header__top-wrapper">
-            <Link href={"/"}>
+            <Link href="/">
               <img className="header__logo" src="/logo.webp" alt="applegaget" />
             </Link>
             <form method="post" className="header__form">
@@ -74,7 +74,8 @@ export default function Header() {
                   className="header__top-link"
                   onClick={() =>
                     signOut({
-                      redirect: false,
+                      callbackUrl: "/auth/login",
+                      redirect: true,
                     })
                   }>
                   <img
@@ -112,14 +113,14 @@ export default function Header() {
           <nav className="header__bottom-wrapper">
             {topMenu.map(({ attribute, children }, i) => (
               <div key={i} className="header__bottom-link-wrapper">
-                <Link href="#" className="header__bottom-link">
+                <Link href="/#" className="header__bottom-link">
                   {attribute.name.en}
                 </Link>
                 {children.length > 0 && (
                   <div className="header__bottom-sublink-wrapper">
                     {children.map(({ id, attribute }) => (
                       <Link
-                        href="#"
+                        href="/#"
                         className="header__bottom-sublink"
                         key={id}>
                         {attribute.name.en}

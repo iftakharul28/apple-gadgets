@@ -13,6 +13,11 @@
   &__product-list {
     padding: rem(15px);
   }
+  &__products {
+    &:not(:last-child) {
+      margin-bottom: rem(20px);
+    }
+  }
   &__product-wrapper {
     display: flex;
     gap: rem(20px);

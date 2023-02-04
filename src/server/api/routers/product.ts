@@ -1,56 +1,59 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
-import type { Category, Variant } from "@prisma/client";
+import type { Category, Color, Storage } from "@prisma/client";
 export const productRouter = createTRPCRouter({
   addProduct: protectedProcedure
     .input(
       z.object({
         title: z.string().optional().nullish(),
         image: z.string().optional().nullish(),
+        brand: z.string().optional().nullish(),
         description: z.string().optional().nullish(),
         price: z.number().optional().nullish(),
-        variant: z.any().optional(),
+        storage: z.any().optional(),
+        color: z.any().optional(),
         category: z.any().optional(),
         published: z.boolean().optional(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { title, image, description, price, variant, category, published } =
-        input;
+      const {
+        title,
+        image,
+        description,
+        price,
+        brand,
+        storage,
+        color,
+        category,
+        published,
+      } = input;
       const result = await ctx.prisma.product.create({
         data: {
           title,
           image,
           description,
           price,
+          brand,
           published,
           user: {
             connect: {
               id: ctx?.session?.user.id,
             },
           },
-          variants: {
-            create: variant?.map(
-              ({
-                color,
-                size,
-                image,
-                colorCode,
+          storage: {
+            create: storage?.map(({ storage, price, totalQty }: Storage) => {
+              return {
                 storage,
                 price,
                 totalQty,
-                brand,
-              }: Variant) => {
-                return {
-                  color,
-                  colorCode,
-                  storage,
-                  size,
-                  image,
-                  price,
-                  totalQty,
-                  brand,
-                };
+              };
+            }),
+          },
+          color: {
+            create: color?.map(
+              ({ color, colorCode, image, price, totalQty }: Color) => {
+                return { color, colorCode, image, price, totalQty };
               }
             ),
           },
@@ -122,24 +125,14 @@ export const productRouter = createTRPCRouter({
         select: {
           id: true,
           title: true,
+          brand: true,
           price: true,
           image: true,
           description: true,
           published: true,
           category: true,
-          variants: {
-            select: {
-              id: true,
-              color: true,
-              colorCode: true,
-              image: true,
-              size: true,
-              storage: true,
-              price: true,
-              totalQty: true,
-              brand: true,
-            },
-          },
+          color: true,
+          storage: true,
         },
       });
     }),

@@ -3,6 +3,7 @@ import produce from "immer";
 import { persist } from "zustand/middleware";
 //Zustand Store ✅ 🐻
 type cartListType = {
+  productId?: string;
   id?: string;
   title?: string | null;
   color?: string;
@@ -19,6 +20,7 @@ type useCartType = {
   cartList: cartListType[];
   updateCart: () => void;
   addCartList: ({
+    productId,
     id,
     title,
     brand,
@@ -29,6 +31,7 @@ type useCartType = {
     total,
   }: cartListType) => void;
   updateCartList: ({
+    productId,
     id,
     title,
     color,
@@ -53,6 +56,7 @@ const useCart = create(
         }));
       },
       addCartList: ({
+        productId,
         id,
         color,
         title,
@@ -67,7 +71,18 @@ const useCart = create(
           cartList: state.cartList.some((item) => item.id === id)
             ? [...state.cartList]
             : [
-                { id, title, brand, color, image, size, qty, price, total },
+                {
+                  productId,
+                  id,
+                  title,
+                  brand,
+                  color,
+                  image,
+                  size,
+                  qty,
+                  price,
+                  total,
+                },
                 ...state.cartList,
               ],
         }));
