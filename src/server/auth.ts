@@ -62,9 +62,10 @@ export const authOptions: NextAuthOptions = {
           );
           if (!isValidPassword) return null;
           return {
-            id: result.id,
-            email: result.email,
-            name: result.name,
+            id: result?.id,
+            email: result?.email,
+            name: result?.name,
+            role: true,
           };
         } catch {
           return null;
