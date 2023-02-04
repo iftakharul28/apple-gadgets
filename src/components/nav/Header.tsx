@@ -13,6 +13,7 @@ export default function Header() {
   const [total, setTotal] = useState<number>(0);
   const [showNav, setShowNav] = useState<boolean>(false);
   useEffect(() => setTotal(cart), [cart]);
+  console.log(userData);
   return (
     <header className="header">
       <div className="header__top">

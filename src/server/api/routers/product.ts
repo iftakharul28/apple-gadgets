@@ -181,6 +181,18 @@ export const productRouter = createTRPCRouter({
     });
     return result;
   }),
+  getRecrentProduct: publicProcedure.query(async ({ ctx }) => {
+    const result = await ctx.prisma.product.findMany({
+      where: {
+        published: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: 8,
+    });
+    return result;
+  }),
   getPageProduct: publicProcedure
     .input(
       z.object({

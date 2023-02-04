@@ -20,7 +20,13 @@ body {
 .body--fixed {
   overflow: hidden;
 }
+.main {
+  margin: rem(20px) 0 rem(55px);
 
+  @include mq(medium-large) {
+    margin: rem(45px) 0 rem(30px);
+  }
+}
 a {
   text-decoration: none;
 }

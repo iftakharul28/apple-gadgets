@@ -1,8 +1,6 @@
 .product {
   &__main {
-    margin: rem(40px) 0 rem(95px);
     @include mq(medium) {
-      margin: rem(40px) 0 rem(35px);
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: rem(25px);
@@ -176,5 +174,14 @@
       background-color: $orange-700;
       border: none;
     }
+  }
+  &__recent {
+    overflow: hidden;
+  }
+  &__recent-wrapper {
+    display: flex;
+    align-items: center;
+    gap: rem(15px);
+    overflow-y: scroll;
   }
 }

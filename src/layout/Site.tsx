@@ -7,7 +7,7 @@ const Site = ({ children }: siteType) => {
   return (
     <>
       <Header />
-      <main className="main--body">{children}</main>
+      <main className="main">{children}</main>
       {isMobile && <MobileNav />}
     </>
   );

@@ -1,8 +1,6 @@
 .checkout {
   &__wrappper {
-    margin: rem(45px) 0 rem(95px);
     @include mq(medium-large) {
-      margin: rem(45px) 0 rem(30px);
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: rem(25px);

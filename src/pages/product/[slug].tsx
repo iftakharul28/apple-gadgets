@@ -1,7 +1,12 @@
 import { useSearchParams } from "next/navigation";
 import { api } from "@/utils/api";
 import { Layout } from "@/layout/index";
-import { DetailsSkeleton, ProductAction } from "@/components";
+import {
+  Card,
+  DetailsSkeleton,
+  ProductAction,
+  RecentProduct,
+} from "@/components";
 
 const PostSingle = () => {
   const searchParams = useSearchParams();
@@ -23,6 +28,7 @@ const PostSingle = () => {
       <section className="product">
         <div className="container">
           <ProductAction product={product} />
+          <RecentProduct />
         </div>
       </section>
     </Layout>
