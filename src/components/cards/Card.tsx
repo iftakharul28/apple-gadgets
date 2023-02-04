@@ -1,6 +1,6 @@
-import type { Product } from "@prisma/client";
+import { ProductType } from "@/types";
 import Link from "next/link";
-const Card = ({ id, image, title, price }: Product) => {
+const Card = ({ id, image, title, price }: ProductType) => {
   return (
     <article className="card" key={id} title={title || ""}>
       <Link className="card__wrapper" href={`/product/${id}`}>

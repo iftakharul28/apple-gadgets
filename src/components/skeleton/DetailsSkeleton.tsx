@@ -1,5 +1,5 @@
 import { data } from "@/data/demo";
-import RecentProductSkeleton from "./RecentProductSkeleton";
+import { RecentProductSkeleton } from "@/components";
 
 const DetailsSkeleton = () => {
   return (
@@ -24,7 +24,7 @@ const DetailsSkeleton = () => {
             </div>
             <div className="product__color-wrapper">
               <p>color:</p>
-              {data?.map(({ id }) => (
+              {data?.slice(0, 3).map(({ id }) => (
                 <div
                   key={id}
                   role="button"
@@ -32,27 +32,9 @@ const DetailsSkeleton = () => {
               ))}
             </div>
             <div className="product__account">
-              <div className="product__actions-wrapper">
-                <button className="product__action">-</button>
-                <label className="visually-hidden" htmlFor="add">
-                  add
-                </label>
-                <input
-                  className="product__action-input"
-                  type="number"
-                  name="add"
-                  id="add"
-                />
-                <button className="product__action">+</button>
-              </div>
-              <button
-                type="button"
-                className="product__button product__button--secondey">
-                Buy Now
-              </button>
-              <button type="button" className="product__button">
-                Add to card
-              </button>
+              <div className="skeleton__text"></div>
+              <div className="skeleton__text"></div>
+              <div className="skeleton__text"></div>
             </div>
           </div>
         </div>

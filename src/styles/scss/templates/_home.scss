@@ -9,11 +9,9 @@
     }
     @include mq(medium-large) {
       grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: rem(15px);
     }
     @include mq(large) {
       grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: rem(15px);
     }
   }
 }

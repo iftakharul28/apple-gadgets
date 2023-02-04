@@ -37,6 +37,7 @@ export type PaginationType = {
   site: string;
 };
 export type ProductType = {
+  id?: string;
   title?: string | null;
   image?: string | null;
   brand?: string | null;
