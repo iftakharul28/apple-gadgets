@@ -1,4 +1,4 @@
-import { VariantFormProps, VariantType } from "@/types";
+import type { VariantFormProps, VariantType } from "@/types";
 import { useState } from "react";
 
 const VarientForm = ({

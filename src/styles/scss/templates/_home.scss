@@ -1,8 +1,18 @@
 .home {
   margin: rem(40px) 0 0;
   &__products {
+    display: grid;
+    gap: rem(10px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     @include mq(medium) {
-      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: rem(15px);
+    }
+    @include mq(medium-large) {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: rem(15px);
+    }
+    @include mq(large) {
       grid-template-columns: repeat(6, minmax(0, 1fr));
       gap: rem(15px);
     }

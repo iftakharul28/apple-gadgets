@@ -110,6 +110,7 @@ const ProductAction = ({ product }: { product: productType | null }) => {
         />
       </div>
       <div className="product__details-wrapper">
+        <h1 className="product__heading">{product?.title}</h1>
         <div className="product__details-card-wrapper">
           <div className="product__details-card">
             <p className="product__details-card-title">Cash Discount Price:</p>

@@ -22,7 +22,6 @@ const PostSingle = () => {
     <Layout title={product?.title || ""} description={product?.title || ""}>
       <article className="product">
         <div className="container">
-          <h1>{product?.title}</h1>
           <ProductAction product={product} />
         </div>
       </article>

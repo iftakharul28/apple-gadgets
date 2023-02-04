@@ -1,4 +1,5 @@
 export { default as Header } from "./nav/Header";
+export { default as MobileNav } from "./nav/MobileNav";
 export { default as RegisterForm } from "./form/RegisterForm";
 export { default as ColorForm } from "./form/ColorForm";
 export { default as PostForm } from "./form/PostForm";
@@ -14,4 +15,11 @@ export { default as CartWrapper } from "./cart/CartWrapper";
 export { default as CartList } from "./cart/CartList";
 export { default as StorageSelect } from "./StorageSelect";
 export { default as ColorSelect } from "./ColorSelect";
+// export { default as  } from "./";
+// export { default as  } from "./";
+// export { default as  } from "./";
+// export { default as  } from "./";
+// export { default as  } from "./";
+// export { default as  } from "./";
+// export { default as  } from "./";
 // export { default as  } from "./";

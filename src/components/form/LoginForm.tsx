@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import { useFormik } from "formik";
 import { loginValidate } from "@/lib/validate";
-import { getBaseUrl } from "@/utils/api";
 const LoginForm = () => {
   const router = useRouter();
   // formik hook
@@ -74,7 +73,8 @@ const LoginForm = () => {
         className="login__button"
         type="button"
         onClick={handleGoogleSignin}>
-        Sign In with Google <img src={"/google.svg"} width="20" height={20} />
+        Sign In with Google{" "}
+        <img src={"/google.svg"} alt="google" width="20" height={20} />
       </button>
     </form>
   );

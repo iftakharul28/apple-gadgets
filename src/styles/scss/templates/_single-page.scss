@@ -1,7 +1,11 @@
 .product {
   &__main {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: rem(40px) 0 rem(95px);
+    @include mq(medium) {
+      margin: rem(40px) 0 rem(35px);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
   &__image-wrapper {
     position: relative;
@@ -10,9 +14,16 @@
   }
   &__image {
     position: absolute;
-    inset: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     height: 100%;
     width: auto;
+  }
+  &__heading {
+    font-size: rem(18px);
+    font-weight: 600;
+    color: $dark-700;
   }
   &__details-wrapper {
     grid-column: span 2 / span 2;
@@ -20,22 +31,27 @@
   &__details-card-wrapper {
     display: flex;
     gap: rem(6px);
+    flex-wrap: wrap;
+    @include mq(medium-large) {
+      flex-wrap: nowrap;
+    }
   }
   &__details-card {
     display: flex;
     gap: rem(6px);
     padding: rem(6px);
-    background-color: $gray-200;
+    background-color: $gray-100;
     border-radius: rem(6px);
   }
   &__details-card-title {
-    font-size: rem(18px);
-    color: $dark-700;
+    font-size: rem(15px);
+    color: $dark-400;
+    font-weight: 500;
   }
   &__details-card-text {
     font-size: rem(16px);
     font-weight: 600;
-    color: $dark-400;
+    color: $dark-500;
   }
   &__color-wrapper,
   &__storage-wrapper {
@@ -51,8 +67,12 @@
     padding: rem(6px) rem(8px);
     background-color: $gray-200;
     border-radius: rem(4px);
+    cursor: pointer;
     &--active {
       background-color: $orange-500;
+      .product__storage-text {
+        color: $dark-500;
+      }
     }
   }
   &__storage-text {
@@ -87,7 +107,13 @@
     align-items: center;
   }
   &__account {
-    gap: rem(20px);
+    gap: rem(10px);
+    margin-top: rem(65px);
+    flex-wrap: wrap;
+    @include mq(small) {
+      flex-wrap: nowrap;
+      gap: rem(20px);
+    }
   }
   &__actions-wrapper {
     border: 1px solid $orange-700;
@@ -96,9 +122,13 @@
   &__action {
     border: none;
     background-color: transparent;
-    height: rem(40px);
-    width: rem(40px);
+    height: rem(30px);
+    width: rem(30px);
     cursor: pointer;
+    @include mq(small) {
+      height: rem(40px);
+      width: rem(40px);
+    }
   }
   &__action-input {
     &::-webkit-outer-spin-button,
@@ -112,12 +142,16 @@
     line-height: 1.4;
     color: $gray-700;
     text-align: center;
-    width: rem(61px);
+    width: rem(45px);
     height: rem(40px);
     border: none;
     border-left: 1px solid $orange-700;
     border-right: 1px solid $orange-700;
     border-radius: rem(4px);
+    @include mq(small) {
+      width: rem(61px);
+      height: rem(40px);
+    }
     &:focus {
       outline: none;
     }
@@ -125,13 +159,17 @@
   &__button {
     font-size: rem(15px);
     font-weight: 600;
-    width: rem(117px);
+    width: rem(95px);
     height: rem(42px);
     cursor: pointer;
     color: $orange-700;
     background-color: $white;
     border: 1px solid $orange-700;
     border-radius: rem(4px);
+    @include mq(small) {
+      width: rem(117px);
+      height: rem(42px);
+    }
     &--secondey {
       color: $white;
       background-color: $orange-700;

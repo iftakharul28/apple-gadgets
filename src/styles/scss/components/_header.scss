@@ -1,4 +1,19 @@
 .header {
+  &__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__nav-icon-wrapper {
+    cursor: pointer;
+  }
+  &__nav-icon {
+    color: $white;
+    width: rem(24px);
+    &--secondery {
+      fill: $white !important;
+    }
+  }
   &__top {
     padding: rem(20px) 0;
     background-color: $dark-700;
@@ -43,7 +58,7 @@
     cursor: pointer;
   }
   &__form-icon {
-    color: $orange-700;
+    fill: $orange-700;
     width: rem(24px);
   }
   &__top-link {

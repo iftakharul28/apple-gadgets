@@ -16,10 +16,12 @@ const Home: NextPage = () => {
   }
   return (
     <main className="home">
-      <div className="home__products">
-        {products.map((item, i) => (
-          <Card {...item} key={i} />
-        ))}
+      <div className="container">
+        <div className="home__products">
+          {products.map((item, i) => (
+            <Card {...item} key={i} />
+          ))}
+        </div>
       </div>
     </main>
   );

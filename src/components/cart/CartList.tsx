@@ -41,10 +41,10 @@ const CardList = ({ item }: { item: cartListType }) => {
   };
   return (
     <article className="cart__products" key={item?.id}>
-      <Link
-        className="cart__product-wrapper"
-        href={`/product/${item?.productId}`}>
-        <div className="cart__product-first-row">
+      <div className="cart__product-wrapper">
+        <Link
+          href={`/product/${item?.productId}`}
+          className="cart__product-first-row">
           <figure className="cart__product-image-wrapper">
             <img
               className="cart__product-image"
@@ -53,7 +53,7 @@ const CardList = ({ item }: { item: cartListType }) => {
             />
           </figure>
           {/* <Count AddToCard={AddToCard} qty={addCard?.qty} /> */}
-        </div>
+        </Link>
         <div className="cart__product-details">
           <div className="cart__product-details-wrapper">
             <h2 className="cart__product-title">{item?.title}</h2>
@@ -89,7 +89,7 @@ const CardList = ({ item }: { item: cartListType }) => {
             <p className="cart__product-text">BDT {item?.total}</p>
           </div>
         </div>
-      </Link>
+      </div>
     </article>
   );
 };
