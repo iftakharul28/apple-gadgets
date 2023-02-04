@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import { HamburgerIcon, SearchIcon } from "@/components/icons";
+import { HamburgerIcon, PlusIcon, SearchIcon } from "@/components/icons";
 import { topMenu } from "@/data/header";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useCart } from "@/store";
@@ -13,6 +13,7 @@ export default function Header() {
   const [total, setTotal] = useState<number>(0);
   const [showNav, setShowNav] = useState<boolean>(false);
   useEffect(() => setTotal(cart), [cart]);
+  console.log(showNav);
   return (
     <header className="header">
       <div className="header__top">
@@ -71,7 +72,6 @@ export default function Header() {
                     <p className="header__top-text">Latest Offers</p>
                   </div>
                 </Link>
-
                 <Link href="/cart" className="header__top-link">
                   <img
                     className="header__top-link-image"
@@ -143,33 +143,35 @@ export default function Header() {
           )}
         </div>
       </div>
-      {!isMobile && (
-        <div className="header__bottom">
-          <div className="container">
-            <nav className="header__bottom-wrapper">
-              {topMenu.map(({ attribute, children }, i) => (
-                <div key={i} className="header__bottom-link-wrapper">
-                  <Link href="/#" className="header__bottom-link">
-                    {attribute.name.en}
-                  </Link>
-                  {children.length > 0 && (
-                    <div className="header__bottom-sublink-wrapper">
-                      {children.map(({ id, attribute }) => (
-                        <Link
-                          href="/#"
-                          className="header__bottom-sublink"
-                          key={id}>
-                          {attribute.name.en}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </nav>
-          </div>
+      <div
+        className={
+          showNav ? "header__bottom header__bottom--active" : "header__bottom"
+        }>
+        <div className="container">
+          <nav className="header__bottom-wrapper">
+            {topMenu.map(({ attribute, children }, i) => (
+              <div key={i} className="header__bottom-link-wrapper">
+                <Link href="/#" className="header__bottom-link">
+                  {attribute.name.en}
+                </Link>
+                {isMobile && <PlusIcon className="header__bottom-icon" />}
+                {children.length > 0 && (
+                  <div className="header__bottom-sublink-wrapper">
+                    {children.map(({ id, attribute }) => (
+                      <Link
+                        href="/#"
+                        className="header__bottom-sublink"
+                        key={id}>
+                        {attribute.name.en}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 }

@@ -1,4 +1,4 @@
-import { ProductType } from "@/types";
+import type { ProductType } from "@/types";
 import Link from "next/link";
 const Card = ({ id, image, title, price }: ProductType) => {
   return (

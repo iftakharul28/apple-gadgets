@@ -21,8 +21,7 @@ body {
   overflow: hidden;
 }
 .main {
-  margin: rem(20px) 0 rem(55px);
-
+  margin: rem(85px) 0 rem(75px);
   @include mq(medium-large) {
     margin: rem(45px) 0 rem(30px);
   }
