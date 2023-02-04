@@ -73,12 +73,8 @@
       width: 100%;
     }
   }
-  &__cart {
-    border: 1px solid rgb(238, 238, 238);
-    padding: rem(8px);
-    @include mq(double-extra-large) {
-      padding: rem(12px);
-    }
+  &__card {
+    min-width: rem(145px);
   }
   &__text {
     background: #eee;

@@ -1,12 +1,7 @@
 import { useSearchParams } from "next/navigation";
 import { api } from "@/utils/api";
 import { Layout } from "@/layout/index";
-import {
-  Card,
-  DetailsSkeleton,
-  ProductAction,
-  RecentProduct,
-} from "@/components";
+import { DetailsSkeleton, ProductAction, RecentProduct } from "@/components";
 
 const PostSingle = () => {
   const searchParams = useSearchParams();

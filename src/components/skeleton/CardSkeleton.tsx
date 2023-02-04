@@ -1,6 +1,6 @@
 const CardSkeleton = () => {
   return (
-    <article className="card">
+    <article className="card skeleton__card">
       <div className="card__wrapper">
         <figure className="skeleton__image-wrapper">
           <div className="card__image skeleton__image"></div>

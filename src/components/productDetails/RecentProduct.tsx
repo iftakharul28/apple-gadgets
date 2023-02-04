@@ -1,18 +1,8 @@
 import { api } from "@/utils/api";
-import { Card, RecentProductSkeleton } from "@/components";
+import { Card } from "@/components";
 
 const RecentProduct = () => {
-  const {
-    data: products,
-    isLoading,
-    isError,
-  } = api.product.getRecrentProduct.useQuery();
-  if (isLoading) {
-    return <RecentProductSkeleton />;
-  }
-  if (isError) {
-    return <p>error</p>;
-  }
+  const { data: products } = api.product.getRecrentProduct.useQuery();
   return (
     <div className="product__recent">
       <div className="product__recent-wrapper scrollbar-hidden">

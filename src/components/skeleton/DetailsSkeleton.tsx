@@ -1,4 +1,5 @@
 import { data } from "@/data/demo";
+import RecentProductSkeleton from "./RecentProductSkeleton";
 
 const DetailsSkeleton = () => {
   return (
@@ -55,6 +56,7 @@ const DetailsSkeleton = () => {
             </div>
           </div>
         </div>
+        <RecentProductSkeleton />
       </div>
     </section>
   );
