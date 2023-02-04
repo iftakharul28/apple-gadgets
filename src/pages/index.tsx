@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import { api } from "@/utils/api";
-import { Card } from "@/components";
+import { Card, HomeSkeleton } from "@/components";
 
 const Home: NextPage = () => {
   const {
@@ -9,21 +9,21 @@ const Home: NextPage = () => {
     isError,
   } = api.product.getLatestProduct.useQuery();
   if (isLoading) {
-    return <p>Loading</p>;
+    return <HomeSkeleton />;
   }
   if (isError) {
     return <p>Erros</p>;
   }
   return (
-    <main className="home">
+    <section className="home">
       <div className="container">
         <div className="home__products">
-          {products.map((item, i) => (
+          {products?.map((item, i: number) => (
             <Card {...item} key={i} />
           ))}
         </div>
       </div>
-    </main>
+    </section>
   );
 };
 

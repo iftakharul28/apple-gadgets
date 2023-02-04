@@ -1,7 +1,7 @@
 import { useSearchParams } from "next/navigation";
 import { api } from "@/utils/api";
 import { Layout } from "@/layout/index";
-import { ProductAction } from "@/components";
+import { DetailsSkeleton, ProductAction } from "@/components";
 
 const PostSingle = () => {
   const searchParams = useSearchParams();
@@ -13,18 +13,18 @@ const PostSingle = () => {
     id: `${searchParams.get("slug")}`,
   });
   if (isLoading) {
-    return <p>loading</p>;
+    return <DetailsSkeleton />;
   }
   if (isError) {
     return <p>error</p>;
   }
   return (
     <Layout title={product?.title || ""} description={product?.title || ""}>
-      <article className="product">
+      <section className="product">
         <div className="container">
           <ProductAction product={product} />
         </div>
-      </article>
+      </section>
     </Layout>
   );
 };

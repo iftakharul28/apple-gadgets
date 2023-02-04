@@ -5,6 +5,7 @@
       margin: rem(40px) 0 rem(35px);
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: rem(25px);
     }
   }
   &__image-wrapper {
