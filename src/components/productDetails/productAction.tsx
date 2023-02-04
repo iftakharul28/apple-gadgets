@@ -114,12 +114,14 @@ const ProductAction = ({ product }: { product: productType | null }) => {
           <div className="product__details-card">
             <p className="product__details-card-title">Cash Discount Price:</p>
             <p className="product__details-card-text">
-              {selectedStorage?.price}
+              {selectedStorage?.price}৳
             </p>
           </div>
           <div className="product__details-card">
             <p className="product__details-card-title">Cash Discount Price:</p>
-            <p className="product__details-card-text">In Stock</p>
+            <p className="product__details-card-text">
+              {selectedStorage?.price === 0 ? "Pre Order" : "In Stock"}
+            </p>
           </div>
           <div className="product__details-card">
             <p className="product__details-card-title">Brand:</p>
