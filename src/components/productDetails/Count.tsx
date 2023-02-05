@@ -6,7 +6,10 @@ type CountType = {
 const Count = ({ AddToCard, qty }: CountType) => {
   return (
     <div className="product__actions-wrapper">
-      <button className="product__action" onClick={() => AddToCard("remove")}>
+      <button
+        type="button"
+        className="product__action"
+        onClick={() => AddToCard("remove")}>
         -
       </button>
       <label className="visually-hidden" htmlFor="add">
@@ -20,7 +23,10 @@ const Count = ({ AddToCard, qty }: CountType) => {
         value={qty ? qty : 1}
         onChange={(e) => AddToCard("update", e)}
       />
-      <button className="product__action" onClick={() => AddToCard("add")}>
+      <button
+        type="button"
+        className="product__action"
+        onClick={() => AddToCard("add")}>
         +
       </button>
     </div>

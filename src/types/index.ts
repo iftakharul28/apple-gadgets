@@ -98,3 +98,59 @@ export type VariantFormProps = {
   setShowVariant: Dispatch<SetStateAction<boolean>>;
   variant: VariantType[];
 };
+
+export type cartListType = {
+  productId?: string;
+  id?: string;
+  title?: string | null;
+  color?: string;
+  image?: string;
+  brand?: string;
+  size?: string;
+  storage?: string;
+  price: number;
+  qty: number;
+  total: number;
+};
+export type useCartType = {
+  cart: number;
+  cartList: cartListType[];
+  setCart: () => void;
+  updateCart: () => void;
+  setCartList: ({
+    productId,
+    id,
+    color,
+    title,
+    image,
+    size,
+    brand,
+    qty,
+    price,
+    total,
+  }: cartListType) => void;
+  addCartList: ({
+    productId,
+    id,
+    title,
+    brand,
+    color,
+    size,
+    qty,
+    price,
+    total,
+  }: cartListType) => void;
+  updateCartList: ({
+    productId,
+    id,
+    title,
+    color,
+    brand,
+    size,
+    qty,
+    price,
+    total,
+  }: cartListType) => void;
+  deleteCart: () => void;
+  deleteCartList: (id: string) => void;
+};

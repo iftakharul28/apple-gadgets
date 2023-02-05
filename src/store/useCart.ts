@@ -1,58 +1,51 @@
 import { create } from "zustand";
 import produce from "immer";
 import { persist } from "zustand/middleware";
+import type { cartListType, useCartType } from "@/types";
 //Zustand Store ✅ 🐻
-type cartListType = {
-  productId?: string;
-  id?: string;
-  title?: string | null;
-  color?: string;
-  image?: string;
-  brand?: string;
-  size?: string;
-  storage?: string;
-  price?: number;
-  qty: number;
-  total?: number;
-};
-type useCartType = {
-  cart: number;
-  cartList: cartListType[];
-  updateCart: () => void;
-  addCartList: ({
-    productId,
-    id,
-    title,
-    brand,
-    color,
-    size,
-    qty,
-    price,
-    total,
-  }: cartListType) => void;
-  updateCartList: ({
-    productId,
-    id,
-    title,
-    color,
-    brand,
-    size,
-    qty,
-    price,
-    total,
-  }: cartListType) => void;
-  deleteCart: () => void;
-  deleteCartList: (id: string) => void;
-};
 
 const useCart = create(
   persist<useCartType>(
     (set) => ({
       cart: 0,
       cartList: [],
+      setCart: () => {
+        set(() => ({
+          cart: 1,
+        }));
+      },
       updateCart: () => {
         set((state) => ({
           cart: state.cart + 1,
+        }));
+      },
+      setCartList: ({
+        productId,
+        id,
+        color,
+        title,
+        image,
+        size,
+        brand,
+        qty,
+        price,
+        total,
+      }: cartListType) => {
+        set(() => ({
+          cartList: [
+            {
+              productId,
+              id,
+              title,
+              brand,
+              color,
+              image,
+              size,
+              qty,
+              price,
+              total,
+            },
+          ],
         }));
       },
       addCartList: ({

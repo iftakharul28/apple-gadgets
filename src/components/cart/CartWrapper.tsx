@@ -7,11 +7,12 @@ const CartWrapper = () => {
   const cartList = useCart((state) => state?.cartList);
   const cart = useCart((state) => state?.cart);
   const [totalCart, setTotalCart] = useState<typeof cartList>([]);
-  const [totalCost, setTotalCost] = useState<number>();
+  const [totalCost, setTotalCost] = useState<number>(0);
   useEffect(() => {
     setTotalCart(cartList);
-    let sum = 0;
-    cartList?.map(({ total }: { total?: number }) => (sum += total || 0));
+    // let sum = 0;
+    // cartList?.map(({ total }: { total?: number }) => (sum += total || 0));
+    const sum = cartList.reduce((a, b) => a + b.price * b.qty, 0);
     setTotalCost(sum);
   }, [cartList]);
 

@@ -11,8 +11,9 @@ const Checkout = () => {
   const [coupon, setCupon] = useState<string>("");
   useEffect(() => {
     setTotalCart(cartList);
-    let sum = 0;
-    cartList?.map(({ total }: { total?: number }) => (sum += total || 0));
+    // let sum = 0;
+    // cartList?.map(({ total }: { total?: number }) => (sum += total || 0));
+    const sum = cartList.reduce((a, b) => a + b.price * b.qty, 0);
     setTotalCost(sum);
   }, [cartList]);
   const cuponCheck = (key: string) => {

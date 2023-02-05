@@ -2,6 +2,7 @@ import { useCart } from "@/store";
 import type { Category, Color, Storage } from "@prisma/client";
 import { ChangeEvent, useState } from "react";
 import { Count } from "@/components";
+import { useRouter } from "next/router";
 type productType = {
   id: string;
   image: string | null;
@@ -20,7 +21,10 @@ type cardType = {
   total?: number;
 };
 const ProductAction = ({ product }: { product: productType | null }) => {
+  const router = useRouter();
+  const setCart = useCart((state) => state?.setCart);
   const updateCart = useCart((state) => state?.updateCart);
+  const setCartList = useCart((state) => state?.setCartList);
   const addCartList = useCart((state) => state?.addCartList);
   const updateCartList = useCart((state) => state?.updateCartList);
   const cartList = useCart((state) => state?.cartList);
@@ -63,7 +67,20 @@ const ProductAction = ({ product }: { product: productType | null }) => {
   };
   const buttonAction = (type: string) => {
     if (type === "buy") {
-      console.log(type);
+      router.push("/checkout");
+      setCart();
+      setCartList({
+        productId: product?.id,
+        id: selectedColor?.id,
+        title: product?.title,
+        image: selectedColor?.image || "",
+        brand: product?.brand || "",
+        color: selectedColor?.color || "",
+        storage: selectedStorage?.storage || "",
+        price: Number(selectedStorage?.price),
+        qty: addCard?.qty,
+        total: Number(addCard?.qty) * Number(selectedStorage?.price),
+      });
     }
     if (type === "card") {
       if (selectedColor) {
