@@ -188,4 +188,129 @@
       grid-template-columns: repeat(6, minmax(0, 1fr));
     }
   }
+  &__description {
+    margin-top: rem(75px);
+  }
+  &__description-button-wrapper {
+    display: flex;
+    gap: rem(10px);
+    border-bottom: 1px solid $orange-700;
+  }
+  &__description-button {
+    font-size: rem(15px);
+    font-weight: 600;
+    width: rem(95px);
+    height: rem(42px);
+    cursor: pointer;
+    color: $orange-700;
+    background-color: $white;
+    border: 1px solid $orange-700;
+    border-bottom: none;
+    border-radius: rem(2px);
+    @include mq(small) {
+      width: rem(117px);
+      height: rem(42px);
+    }
+    &--active {
+      color: $white;
+      background-color: $orange-700;
+      border: none;
+    }
+  }
+  &__description-content-wrapper {
+    margin-top: rem(15px);
+  }
+  &__content {
+    a {
+      text-decoration: none;
+    }
+
+    h1,
+    .h1 {
+      font-size: $h1;
+      @include mq(medium) {
+        font-size: $h1-md;
+      }
+    }
+    h2,
+    .h2 {
+      font-size: $h2;
+      @include mq(medium) {
+        font-size: $h2-md;
+      }
+    }
+    h3,
+    .h3 {
+      font-size: $h3;
+      @include mq(medium) {
+        font-size: $h3-md;
+      }
+    }
+    h4,
+    .h4 {
+      font-size: $h4;
+    }
+    h5,
+    .h5 {
+      font-size: $h5;
+    }
+    h6,
+    .h6 {
+      font-size: $h6;
+    }
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: $medium;
+      line-height: 1.4;
+      img {
+        width: 100%;
+      }
+    }
+    p {
+      &:not(:last-child) {
+        margin-bottom: rem(20px);
+      }
+      img {
+        width: 100%;
+      }
+    }
+    img {
+      width: 100%;
+    }
+    a:focus,
+    button:focus {
+      outline: 0;
+    }
+    a {
+      color: $dark-900;
+      text-decoration: none;
+      &:hover {
+        color: $green-600;
+      }
+    }
+    ul,
+    li {
+      padding: 0;
+      margin: 0;
+      list-style-position: inside;
+      color: $dark-900;
+    }
+    strong {
+      padding: rem(10px) 0;
+      margin: rem(15px) 0;
+      display: block;
+      // border-bottom: 1px solid #c7c7c7;
+      // border-top: 1px solid #c7c7c7;
+    }
+  }
 }
