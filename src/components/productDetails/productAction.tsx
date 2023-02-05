@@ -1,7 +1,7 @@
 import { useCart } from "@/store";
 import type { Category, Color, Storage } from "@prisma/client";
 import { ChangeEvent, useState } from "react";
-import { Count } from "@/components";
+import { Alart, Count } from "@/components";
 import { useRouter } from "next/router";
 type productType = {
   id: string;
@@ -29,6 +29,7 @@ const ProductAction = ({ product }: { product: productType | null }) => {
   const updateCartList = useCart((state) => state?.updateCartList);
   const cartList = useCart((state) => state?.cartList);
   const [selectedColor, setSelectedColor] = useState(product?.color[0]);
+  const [alart, setAlart] = useState<boolean>(false);
   const [selectedStorage, setSelectedStorage] = useState(product?.storage[0]);
   const [addCard, setAddCard] = useState<cardType>({
     price: 0,
@@ -83,9 +84,12 @@ const ProductAction = ({ product }: { product: productType | null }) => {
       });
     }
     if (type === "card") {
-      if (selectedColor) {
+      if (
+        selectedColor &&
+        selectedStorage?.price != 0 &&
+        selectedColor?.price != 0
+      ) {
         const find = cartList.some((item) => item.id == selectedColor?.id);
-        console.log(find);
         if (!find) {
           updateCart();
           addCartList({
@@ -113,6 +117,8 @@ const ProductAction = ({ product }: { product: productType | null }) => {
           qty: addCard?.qty,
           total: addCard?.qty * Number(selectedStorage?.price),
         });
+      } else {
+        setAlart(true);
       }
     }
   };
@@ -221,6 +227,13 @@ const ProductAction = ({ product }: { product: productType | null }) => {
           </button>
         </div>
       </div>
+      {alart ? (
+        <Alart
+          heading="Cart Issue"
+          text="product not added"
+          close={() => setAlart(false)}
+        />
+      ) : null}
     </div>
   );
 };

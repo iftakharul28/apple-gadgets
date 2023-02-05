@@ -20,6 +20,6 @@ export { default as HomeSkeleton } from "./skeleton/HomeSkeleton";
 export { default as CardSkeleton } from "./skeleton/CardSkeleton";
 export { default as DetailsSkeleton } from "./skeleton/DetailsSkeleton";
 export { default as RecentProductSkeleton } from "./skeleton/RecentProductSkeleton";
-// export { default as  } from "./";
+export { default as Alart } from "./alart/Alart";
 // export { default as  } from "./";
 // export { default as  } from "./";

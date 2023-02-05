@@ -1,0 +1,49 @@
+.alart {
+  position: fixed;
+  inset: 0;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+  z-index: 999;
+  background-color: rgba($blue-600, 0.2);
+  &__wrapper {
+    width: rem(400px);
+    height: rem(200px);
+    display: grid;
+    place-items: center;
+    border-radius: rem(6px);
+    background-color: $white;
+    padding: 0 rem(15px);
+    margin: 0 rem(10px);
+    @include mq(801px) {
+      max-width: rem(800px);
+      padding: 0 rem(40px);
+    }
+  }
+  &__heading {
+    font-size: rem(16px);
+    text-transform: capitalize;
+    font-weight: 600;
+    color: $dark-600;
+    text-align: center;
+  }
+  &__text {
+    font-size: rem(14px);
+    color: $dark-300;
+    text-align: center;
+    margin: rem(8px) rem(15px);
+  }
+  &__button {
+    font-size: rem(15px);
+    font-weight: 600;
+    width: 100%;
+    height: rem(42px);
+    cursor: pointer;
+    color: $white;
+    background-color: $orange-700;
+    border: none;
+    border-radius: rem(4px);
+    text-transform: uppercase;
+  }
+}
