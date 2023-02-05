@@ -79,13 +79,13 @@ const LoginForm = () => {
       <button type="submit" className="form__button">
         Sign in
       </button>
-      {/* <button
+      <button
         className="login__button"
         type="button"
         onClick={handleGoogleSignin}>
         Sign In with Google{" "}
         <img src={"/google.svg"} alt="google" width="20" height={20} />
-      </button> */}
+      </button>
     </form>
   );
 };
