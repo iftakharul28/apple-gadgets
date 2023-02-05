@@ -137,13 +137,18 @@ const ProductAction = ({ product }: { product: productType | null }) => {
           <div className="product__details-card">
             <p className="product__details-card-title">Cash Discount Price:</p>
             <p className="product__details-card-text">
-              {selectedStorage?.price}৳
+              {selectedStorage?.price
+                ? selectedStorage?.price
+                : selectedColor?.price}
+              ৳
             </p>
           </div>
           <div className="product__details-card">
             <p className="product__details-card-title">Cash Discount Price:</p>
             <p className="product__details-card-text">
-              {selectedStorage?.price === 0 ? "Pre Order" : "In Stock"}
+              {selectedStorage?.price === 0 || selectedColor?.price === 0
+                ? "Pre Order"
+                : "In Stock"}
             </p>
           </div>
           <div className="product__details-card">
@@ -151,43 +156,47 @@ const ProductAction = ({ product }: { product: productType | null }) => {
             <p className="product__details-card-text">{product?.brand}</p>
           </div>
         </div>
-        <div className="product__storage-wrapper">
-          <p>storage:</p>
-          {product?.storage.map(({ id, storage }: Storage, i: number) => (
-            <div
-              key={i}
-              role="button"
-              onClick={() => ActiveStorage(id)}
-              className={
-                selectedStorage?.id === id
-                  ? "product__storage product__storage--active"
-                  : "product__storage"
-              }
-              title={storage || ""}>
-              <p className="product__storage-text">{storage}</p>
-            </div>
-          ))}
-        </div>
-        <div className="product__color-wrapper">
-          <p>color:</p>
-          {product?.color.map(
-            ({ id, color, colorCode, price, image }: Color, i: number) => (
+        {product?.storage?.length != 0 && (
+          <div className="product__storage-wrapper">
+            <p>storage:</p>
+            {product?.storage.map(({ id, storage }: Storage, i: number) => (
               <div
                 key={i}
                 role="button"
-                onClick={() => ActiveProduct(id)}
+                onClick={() => ActiveStorage(id)}
                 className={
-                  selectedColor?.id === id
-                    ? "product__color product__color--active"
-                    : "product__color "
+                  selectedStorage?.id === id
+                    ? "product__storage product__storage--active"
+                    : "product__storage"
                 }
-                title={color || ""}
-                style={{ backgroundColor: colorCode || "" }}>
-                <p className="visually-hidden">{color}</p>
+                title={storage || ""}>
+                <p className="product__storage-text">{storage}</p>
               </div>
-            )
-          )}
-        </div>
+            ))}
+          </div>
+        )}
+        {product?.color?.length != 0 && (
+          <div className="product__color-wrapper">
+            <p>color:</p>
+            {product?.color.map(
+              ({ id, color, colorCode, price, image }: Color, i: number) => (
+                <div
+                  key={i}
+                  role="button"
+                  onClick={() => ActiveProduct(id)}
+                  className={
+                    selectedColor?.id === id
+                      ? "product__color product__color--active"
+                      : "product__color "
+                  }
+                  title={color || ""}
+                  style={{ backgroundColor: colorCode || "" }}>
+                  <p className="visually-hidden">{color}</p>
+                </div>
+              )
+            )}
+          </div>
+        )}
         <div className="product__account">
           {/* <div className="product__actions-wrapper">
             <button
