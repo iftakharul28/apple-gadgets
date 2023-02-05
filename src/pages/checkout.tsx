@@ -34,7 +34,7 @@ const Checkout = () => {
     }
   };
   return (
-    <Layout title="Checkout" description="Checkout Page">
+    <Layout title="Checkout">
       <section className="checkout">
         <div className="container">
           <div className="checkout__wrappper">

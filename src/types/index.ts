@@ -6,7 +6,6 @@ export type IconClassType = {
 
 export type siteType = {
   title?: string;
-  description?: string;
   children: JSX.Element | JSX.Element[];
 };
 export type loginValidation = {

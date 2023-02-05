@@ -3,7 +3,7 @@ import { Layout } from "@/layout";
 
 const Cart = () => {
   return (
-    <Layout title="Cart" description="Cart Page">
+    <Layout title="Cart">
       <section className="cart">
         <div className="container">
           <CartWrapper />

@@ -19,7 +19,7 @@ const PostSingle = () => {
     return <p>error</p>;
   }
   return (
-    <Layout title={product?.title || ""} description={product?.title || ""}>
+    <Layout title={product?.title || ""}>
       <section className="product">
         <div className="container">
           <ProductAction product={product} />
