@@ -1,7 +1,7 @@
 .header {
   position: fixed;
   inset: 0;
-  height: 100%;
+  height: max-content;
   width: 100%;
   z-index: 99;
   @include mq(980px) {

@@ -5,6 +5,7 @@
 - [Next.js](https://nextjs.org)
 - [NextAuth.js](https://next-auth.js.org)
 - [Prisma](https://prisma.io)
+- [TRPC](https://trpc.io/)
 
 ## Learn More
 
