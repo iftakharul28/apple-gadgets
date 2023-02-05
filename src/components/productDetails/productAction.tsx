@@ -78,9 +78,15 @@ const ProductAction = ({ product }: { product: productType | null }) => {
         brand: product?.brand || "",
         color: selectedColor?.color || "",
         storage: selectedStorage?.storage || "",
-        price: Number(selectedStorage?.price),
+        price: selectedStorage?.price
+          ? Number(selectedStorage?.price)
+          : Number(selectedColor?.price),
         qty: addCard?.qty,
-        total: Number(addCard?.qty) * Number(selectedStorage?.price),
+        total:
+          addCard?.qty *
+          (selectedStorage?.price
+            ? Number(selectedStorage?.price)
+            : Number(selectedColor?.price)),
       });
     }
     if (type === "card") {
@@ -100,9 +106,15 @@ const ProductAction = ({ product }: { product: productType | null }) => {
             brand: product?.brand || "",
             color: selectedColor?.color || "",
             storage: selectedStorage?.storage || "",
-            price: Number(selectedStorage?.price),
+            price: selectedStorage?.price
+              ? Number(selectedStorage?.price)
+              : Number(selectedColor?.price),
             qty: addCard?.qty,
-            total: Number(addCard?.qty) * Number(selectedStorage?.price),
+            total:
+              addCard?.qty *
+              (selectedStorage?.price
+                ? Number(selectedStorage?.price)
+                : Number(selectedColor?.price)),
           });
         }
         updateCartList({
@@ -113,9 +125,15 @@ const ProductAction = ({ product }: { product: productType | null }) => {
           image: selectedColor?.image || "",
           color: selectedColor?.color || "",
           storage: selectedStorage?.storage || "",
-          price: Number(selectedStorage?.price),
+          price: selectedStorage?.price
+            ? Number(selectedStorage?.price)
+            : Number(selectedColor?.price),
           qty: addCard?.qty,
-          total: addCard?.qty * Number(selectedStorage?.price),
+          total:
+            addCard?.qty *
+            (selectedStorage?.price
+              ? Number(selectedStorage?.price)
+              : Number(selectedColor?.price)),
         });
       } else {
         setAlart(true);
