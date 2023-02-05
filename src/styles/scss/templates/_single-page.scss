@@ -197,10 +197,10 @@
     border-bottom: 1px solid $orange-700;
   }
   &__description-button {
-    font-size: rem(15px);
-    font-weight: 600;
-    width: rem(95px);
-    height: rem(42px);
+    font-size: rem(12px);
+    font-weight: 500;
+    width: rem(80px);
+    height: rem(35px);
     cursor: pointer;
     color: $orange-700;
     background-color: $white;
@@ -208,6 +208,8 @@
     border-bottom: none;
     border-radius: rem(2px);
     @include mq(small) {
+      font-size: rem(15px);
+      font-weight: 600;
       width: rem(117px);
       height: rem(42px);
     }
