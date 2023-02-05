@@ -12,7 +12,6 @@ const login = () => {
           </p>
         </div>
         <LoginForm />
-
         <p className="login__footer-text">
           Don{`'`}t have an account?
           <Link className="login__footer-link" href="/auth/register">

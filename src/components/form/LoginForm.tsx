@@ -15,12 +15,15 @@ const LoginForm = () => {
     onSubmit,
   });
   async function onSubmit(values: loginValidation) {
-    console.log(values);
     const status = await signIn("credentials", {
-      redirect: true,
+      redirect: false,
       email: values?.email,
       password: values?.password,
-      callbackUrl: "/dashboard",
+      callbackUrl: `${
+        router.query.callbackUrl
+          ? router.query.callbackUrl
+          : window.location.origin
+      }`,
     });
     if (status?.ok) {
       router.push(status?.url || "");
@@ -28,8 +31,12 @@ const LoginForm = () => {
   }
   async function handleGoogleSignin() {
     signIn("google", {
-      redirect: true,
-      callbackUrl: "/dashboard",
+      redirect: false,
+      callbackUrl: `${
+        router.query.callbackUrl
+          ? router.query.callbackUrl
+          : window.location.origin
+      }`,
     });
   }
   return (
