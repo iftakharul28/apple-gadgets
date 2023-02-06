@@ -1,7 +1,9 @@
 import { CheckoutForm } from "@/components";
 import { Layout } from "@/layout";
 import { useCart } from "@/store";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const Checkout = () => {
@@ -33,6 +35,16 @@ const Checkout = () => {
       }
     }
   };
+  const router = useRouter();
+  const { status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push("/auth/login");
+    },
+  });
+  if (status === "loading") {
+    <p>loading</p>;
+  }
   return (
     <Layout title="Checkout">
       <section className="checkout">
