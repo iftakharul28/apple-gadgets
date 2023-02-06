@@ -31,7 +31,7 @@ const LoginForm = () => {
   }
   async function handleGoogleSignin() {
     signIn("google", {
-      redirect: false,
+      redirect: true,
       callbackUrl: `${
         router.query.callbackUrl
           ? router.query.callbackUrl
