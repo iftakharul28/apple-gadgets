@@ -9,6 +9,12 @@ const useCart = create(
     (set) => ({
       cart: 0,
       cartList: [],
+      finalPrice: 0,
+      addFinalPrice: ({ price }: { price: number }) => {
+        set(() => ({
+          finalPrice: price,
+        }));
+      },
       setCart: () => {
         set(() => ({
           cart: 1,

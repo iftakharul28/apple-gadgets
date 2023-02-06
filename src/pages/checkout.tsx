@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 
 const Checkout = () => {
   const cartList = useCart((state) => state?.cartList);
+  const finalPrice = useCart((state) => state?.finalPrice);
+  const addFinalPrice = useCart((state) => state?.addFinalPrice);
   const [alart, setAlart] = useState<boolean>(false);
   const cuponList = useCupon((state) => state?.cuponList);
   const setCuponList = useCupon((state) => state?.setCuponList);
@@ -19,7 +21,8 @@ const Checkout = () => {
     // let sum = 0;
     // cartList?.map(({ total }: { total?: number }) => (sum += total || 0));
     const sum = cartList.reduce((a, b) => a + b.price * b.qty, 0);
-    setTotalCost(sum);
+    addFinalPrice({ price: sum });
+    setTotalCost(finalPrice);
   }, [cartList]);
   const cuponCheck = (key: string) => {
     const find = cuponList.some((item) => item.name == key);
@@ -33,14 +36,17 @@ const Checkout = () => {
     ) {
       if (key.startsWith("Discount5")) {
         setCuponList({ name: "Discount5" });
+        addFinalPrice({ price: totalCost - 5 });
         setTotalCost(totalCost - 5);
       }
       if (key.startsWith("Discount10")) {
         setCuponList({ name: "Discount10" });
+        addFinalPrice({ price: totalCost - 10 });
         setTotalCost(totalCost - 10);
       }
       if (key.startsWith("Special100")) {
         setCuponList({ name: "Special100" });
+        addFinalPrice({ price: totalCost - 100 });
         setTotalCost(totalCost - 100);
       }
     }

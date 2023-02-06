@@ -114,6 +114,8 @@ export type cartListType = {
 export type useCartType = {
   cart: number;
   cartList: cartListType[];
+  finalPrice: number;
+  addFinalPrice: ({ price }: { price: number }) => void;
   setCart: () => void;
   updateCart: () => void;
   setCartList: ({

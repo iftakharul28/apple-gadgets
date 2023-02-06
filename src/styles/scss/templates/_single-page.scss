@@ -276,6 +276,7 @@
       line-height: 1.4;
       img {
         width: 100%;
+        height: auto;
       }
     }
     p {
@@ -284,10 +285,12 @@
       }
       img {
         width: 100%;
+        height: auto;
       }
     }
     img {
       width: 100%;
+      height: auto;
     }
     a:focus,
     button:focus {
