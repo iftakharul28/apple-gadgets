@@ -1,6 +1,6 @@
-import { CheckoutForm } from "@/components";
+import { Alart, CheckoutForm } from "@/components";
 import { Layout } from "@/layout";
-import { useCart, useCuppon } from "@/store";
+import { useCart, useCupon } from "@/store";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -8,8 +8,9 @@ import { useEffect, useState } from "react";
 
 const Checkout = () => {
   const cartList = useCart((state) => state?.cartList);
-  const cupponList = useCuppon((state) => state?.cupponList);
-  const setCupponList = useCuppon((state) => state?.setCupponList);
+  const [alart, setAlart] = useState<boolean>(false);
+  const cuponList = useCupon((state) => state?.cuponList);
+  const setCuponList = useCupon((state) => state?.setCuponList);
   const [totalCart, setTotalCart] = useState<typeof cartList>([]);
   const [totalCost, setTotalCost] = useState<number>(0);
   const [coupon, setCupon] = useState<string>("");
@@ -21,9 +22,9 @@ const Checkout = () => {
     setTotalCost(sum);
   }, [cartList]);
   const cuponCheck = (key: string) => {
-    const find = cupponList.some((item) => item.name == key);
+    const find = cuponList.some((item) => item.name == key);
     if (find) {
-      alert("you have already tryed this");
+      setAlart(true);
     }
     if (
       key.startsWith("Discount5") ||
@@ -31,15 +32,15 @@ const Checkout = () => {
       key.startsWith("Special100")
     ) {
       if (key.startsWith("Discount5")) {
-        setCupponList({ name: "Discount5" });
+        setCuponList({ name: "Discount5" });
         setTotalCost(totalCost - 5);
       }
       if (key.startsWith("Discount10")) {
-        setCupponList({ name: "Discount10" });
+        setCuponList({ name: "Discount10" });
         setTotalCost(totalCost - 10);
       }
       if (key.startsWith("Special100")) {
-        setCupponList({ name: "Special100" });
+        setCuponList({ name: "Special100" });
         setTotalCost(totalCost - 100);
       }
     }
@@ -131,6 +132,13 @@ const Checkout = () => {
             </div>
           </div>
         </div>
+        {alart ? (
+          <Alart
+            heading="Cupon Code Issue"
+            text="you have already tryed this cupon code"
+            close={() => setAlart(false)}
+          />
+        ) : null}
       </section>
     </Layout>
   );

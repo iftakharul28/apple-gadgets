@@ -22,17 +22,18 @@
     }
   }
   &__heading {
-    font-size: rem(16px);
+    font-size: rem(17px);
     text-transform: capitalize;
     font-weight: 600;
-    color: $dark-600;
+    color: $red-500;
     text-align: center;
   }
   &__text {
-    font-size: rem(14px);
-    color: $dark-300;
+    font-size: rem(15px);
+    color: $dark-400;
+    font-weight: 500;
     text-align: center;
-    margin: rem(8px) rem(15px);
+    margin: rem(12px) 0 rem(45px);
   }
   &__button {
     font-size: rem(15px);

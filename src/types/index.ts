@@ -154,6 +154,6 @@ export type useCartType = {
   deleteCartList: (id: string) => void;
 };
 export type useCuponType = {
-  cupponList: { name: string }[];
-  setCupponList: ({ name }: { name: string }) => void;
+  cuponList: { name: string }[];
+  setCuponList: ({ name }: { name: string }) => void;
 };

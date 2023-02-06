@@ -2,27 +2,27 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import type { useCuponType } from "@/types";
 //Zustand Store ✅ 🐻
-const useCuppon = create(
+const useCupon = create(
   persist<useCuponType>(
     (set) => ({
-      cupponList: [],
-      setCupponList: ({ name }: { name: string }) => {
+      cuponList: [],
+      setCuponList: ({ name }: { name: string }) => {
         set((state) => ({
-          cupponList: state.cupponList.some((item) => item.name === name)
-            ? [...state.cupponList]
+          cuponList: state.cuponList.some((item) => item.name === name)
+            ? [...state.cuponList]
             : [
                 {
                   name,
                 },
-                ...state.cupponList,
+                ...state.cuponList,
               ],
         }));
       },
     }),
     {
-      name: "cuppon",
-      storage: createJSONStorage(() => sessionStorage),
+      name: "cupon",
+      // storage: createJSONStorage(() => sessionStorage),
     }
   )
 );
-export default useCuppon;
+export default useCupon;
