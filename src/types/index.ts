@@ -153,3 +153,7 @@ export type useCartType = {
   deleteCart: () => void;
   deleteCartList: (id: string) => void;
 };
+export type useCuponType = {
+  cupponList: { name: string }[];
+  setCupponList: ({ name }: { name: string }) => void;
+};
