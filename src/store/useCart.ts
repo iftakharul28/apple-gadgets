@@ -117,10 +117,10 @@ const useCart = create(
       deleteCartList: (id: string) =>
         set(
           produce((state) => {
-            const dramaIndex = state.cartList.findIndex(
+            const cartIndex = state.cartList.findIndex(
               (el: cartListType) => el.id === id
             );
-            state.cartList.splice(dramaIndex, 1);
+            state.cartList.splice(cartIndex, 1);
             state.cart - 1;
           })
         ),
