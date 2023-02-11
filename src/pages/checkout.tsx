@@ -24,7 +24,6 @@ const Checkout = () => {
   }, [cartList]);
   const cuponCheck = (key: string) => {
     const find = cuponList.some((item) => item.name === key);
-    console.log(find);
     if (!find) {
       if (
         key.startsWith("Discount5") ||
@@ -130,8 +129,8 @@ const Checkout = () => {
         </div>
         {alart ? (
           <Alart
-            heading="Cupon Code Issue"
-            text="you have already tryed this cupon code"
+            heading="coupon Code Issue"
+            text="Sorry...You have already tried this coupon code"
             close={() => setAlart(false)}
           />
         ) : null}
