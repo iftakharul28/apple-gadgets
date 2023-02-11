@@ -17,7 +17,7 @@ type cartListType = {
   total?: number;
 };
 const CardList = ({ item }: { item: cartListType }) => {
-  const [addCard, setAddCard] = useState<cartListType>(item);
+  // const [addCard, setAddCard] = useState<cartListType>(item);
   const deleteCartList = useCart((state) => state?.deleteCartList);
   const deleteCart = useCart((state) => state?.deleteCart);
   // const AddToCard = (key: string, e?: ChangeEvent<HTMLInputElement>) => {

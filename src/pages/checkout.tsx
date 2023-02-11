@@ -23,30 +23,32 @@ const Checkout = () => {
     setTotalCost(finalPrice);
   }, [cartList]);
   const cuponCheck = (key: string) => {
-    const find = cuponList.some((item) => item.name == key);
-    if (find) {
+    const find = cuponList.some((item) => item.name === key);
+    console.log(find);
+    if (!find) {
+      if (
+        key.startsWith("Discount5") ||
+        key.startsWith("Discount10") ||
+        key.startsWith("Special100")
+      ) {
+        if (key.startsWith("Discount5")) {
+          setCuponList({ name: "Discount5" });
+          addFinalPrice({ price: totalCost - 5 });
+          setTotalCost(totalCost - 5);
+        }
+        if (key.startsWith("Discount10")) {
+          setCuponList({ name: "Discount10" });
+          addFinalPrice({ price: totalCost - 10 });
+          setTotalCost(totalCost - 10);
+        }
+        if (key.startsWith("Special100")) {
+          setCuponList({ name: "Special100" });
+          addFinalPrice({ price: totalCost - 100 });
+          setTotalCost(totalCost - 100);
+        }
+      }
+    } else {
       setAlart(true);
-    }
-    if (
-      key.startsWith("Discount5") ||
-      key.startsWith("Discount10") ||
-      key.startsWith("Special100")
-    ) {
-      if (key.startsWith("Discount5")) {
-        setCuponList({ name: "Discount5" });
-        addFinalPrice({ price: totalCost - 5 });
-        setTotalCost(totalCost - 5);
-      }
-      if (key.startsWith("Discount10")) {
-        setCuponList({ name: "Discount10" });
-        addFinalPrice({ price: totalCost - 10 });
-        setTotalCost(totalCost - 10);
-      }
-      if (key.startsWith("Special100")) {
-        setCuponList({ name: "Special100" });
-        addFinalPrice({ price: totalCost - 100 });
-        setTotalCost(totalCost - 100);
-      }
     }
   };
   return (
