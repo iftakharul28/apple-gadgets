@@ -20,25 +20,25 @@ const CardList = ({ item }: { item: cartListType }) => {
   const [addCard, setAddCard] = useState<cartListType>(item);
   const deleteCartList = useCart((state) => state?.deleteCartList);
   const deleteCart = useCart((state) => state?.deleteCart);
-  const AddToCard = (key: string, e?: ChangeEvent<HTMLInputElement>) => {
-    console.log(key, addCard);
-    if (key === "add") {
-      setAddCard({
-        ...addCard,
-        qty: addCard?.qty ? Number(addCard?.qty) + 1 : 1,
-      });
-    }
-    if (key === "update") {
-      setAddCard({ ...addCard, qty: Number(e?.target.value) });
-    }
-    if (key === "remove") {
-      setAddCard({
-        ...addCard,
-        qty: addCard?.qty ? addCard?.qty - 1 : 1,
-      });
-    }
-    return;
-  };
+  // const AddToCard = (key: string, e?: ChangeEvent<HTMLInputElement>) => {
+  //   console.log(key, addCard);
+  //   if (key === "add") {
+  //     setAddCard({
+  //       ...addCard,
+  //       qty: addCard?.qty ? Number(addCard?.qty) + 1 : 1,
+  //     });
+  //   }
+  //   if (key === "update") {
+  //     setAddCard({ ...addCard, qty: Number(e?.target.value) });
+  //   }
+  //   if (key === "remove") {
+  //     setAddCard({
+  //       ...addCard,
+  //       qty: addCard?.qty ? addCard?.qty - 1 : 1,
+  //     });
+  //   }
+  //   return;
+  // };
   return (
     <article className="cart__products" key={item?.id}>
       <div className="cart__product-wrapper">

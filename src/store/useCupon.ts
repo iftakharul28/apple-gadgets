@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 import type { useCuponType } from "@/types";
 //Zustand Store ✅ 🐻
 const useCupon = create(
@@ -21,7 +21,6 @@ const useCupon = create(
     }),
     {
       name: "cupon",
-      // storage: createJSONStorage(() => sessionStorage),
     }
   )
 );
