@@ -3,10 +3,10 @@ import { getServerSession, type NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { env } from "@/env/server.mjs";
+import { env } from "@/env.mjs";
 import { prisma } from "./db";
-import { comparePassword } from "@/lib/bcrypt";
 import { loginSchema } from "@/lib/auth";
+import { comparePassword } from "@/lib/bcrypt";
 
 /**
  * Options for NextAuth.js used to configure adapters, providers, callbacks,
@@ -36,7 +36,6 @@ export const authOptions: NextAuthOptions = {
     },
   },
   adapter: PrismaAdapter(prisma),
-
   providers: [
     Credentials({
       name: "credentials",

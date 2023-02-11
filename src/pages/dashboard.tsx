@@ -7,15 +7,15 @@ import { useRouter } from "next/router";
 const DashBoard = () => {
   const { data: categories } = api.category.getCategory.useQuery();
   const router = useRouter();
-  const { status } = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.push("/auth/login");
-    },
-  });
-  if (status === "loading") {
-    <p>loading</p>;
-  }
+  // const { status } = useSession({
+  //   required: true,
+  //   onUnauthenticated() {
+  //     router.push("/auth/login");
+  //   },
+  // });
+  // if (status === "loading") {
+  //   <p>loading</p>;
+  // }
   return (
     <Layout title="Product Form">
       <div className="posts">

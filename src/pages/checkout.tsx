@@ -52,15 +52,15 @@ const Checkout = () => {
     }
   };
   const router = useRouter();
-  const { status } = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.push("/auth/login");
-    },
-  });
-  if (status === "loading") {
-    <p>loading</p>;
-  }
+  // const { status } = useSession({
+  //   required: true,
+  //   onUnauthenticated() {
+  //     router.push("/auth/login");
+  //   },
+  // });
+  // if (status === "loading") {
+  //   <p>loading</p>;
+  // }
   return (
     <Layout title="Checkout">
       <section className="checkout">
