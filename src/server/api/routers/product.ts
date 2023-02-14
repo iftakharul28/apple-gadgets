@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
-import type { Category, Color, Storage } from "@prisma/client";
+import type { ColorType, StorageType } from "@/types";
 export const productRouter = createTRPCRouter({
   addProduct: protectedProcedure
     .input(
@@ -10,9 +10,27 @@ export const productRouter = createTRPCRouter({
         brand: z.string().optional().nullish(),
         description: z.string().optional().nullish(),
         price: z.number().optional().nullish(),
-        storage: z.any().optional(),
-        color: z.any().optional(),
-        category: z.any().optional(),
+        storage: z
+          .object({
+            storage: z.string().nullable(),
+            price: z.number().nullable(),
+            totalQty: z.number().nullable(),
+          })
+          .array(),
+        color: z
+          .object({
+            color: z.string().nullable(),
+            colorCode: z.string().nullable(),
+            image: z.string().nullable(),
+            price: z.number().nullable(),
+            totalQty: z.number().nullable(),
+          })
+          .array(),
+        category: z
+          .object({
+            name: z.string(),
+          })
+          .array(),
         published: z.boolean().optional(),
       })
     )
@@ -42,23 +60,25 @@ export const productRouter = createTRPCRouter({
             },
           },
           storage: {
-            create: storage?.map(({ storage, price, totalQty }: Storage) => {
-              return {
-                storage,
-                price,
-                totalQty,
-              };
-            }),
+            create: storage?.map(
+              ({ storage, price, totalQty }: StorageType) => {
+                return {
+                  storage,
+                  price,
+                  totalQty,
+                };
+              }
+            ),
           },
           color: {
             create: color?.map(
-              ({ color, colorCode, image, price, totalQty }: Color) => {
+              ({ color, colorCode, image, price, totalQty }: ColorType) => {
                 return { color, colorCode, image, price, totalQty };
               }
             ),
           },
           category: {
-            connectOrCreate: category?.map(({ name }: Category) => {
+            connectOrCreate: category?.map(({ name }: { name: string }) => {
               return {
                 create: {
                   name,

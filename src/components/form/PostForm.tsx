@@ -28,6 +28,8 @@ const PostForm = ({ categories }: { categories?: CategoryType[] }) => {
         published: false,
       });
       setCategory([]);
+      setColor([]);
+      setStorage([]);
       console.log(data);
     },
     onError(e) {

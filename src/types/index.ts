@@ -46,7 +46,7 @@ export type ProductType = {
 };
 export type CategoryType = {
   id?: string;
-  name: string | null;
+  name: string;
 };
 export type ColorType = {
   id?: string;
