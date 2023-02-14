@@ -3,10 +3,9 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useCart } from "@/store";
 const MobileNav = () => {
-  const { data: userData } = useSession();
+  const { data: userData, status } = useSession();
   const cart = useCart((state) => state.cart);
   const [total, setTotal] = useState<number>(0);
-
   useEffect(() => setTotal(cart), [cart]);
   return (
     <nav className="mobile-nav">
@@ -20,7 +19,6 @@ const MobileNav = () => {
             />
             <p className="mobile-nav__text">Latest Offers</p>
           </Link>
-
           <Link href="/cart" className="mobile-nav__item-wrapper">
             <img
               className="header__top-link-image"
@@ -37,7 +35,7 @@ const MobileNav = () => {
             />
             <p className="mobile-nav__text">Order Today</p>
           </Link>
-          {userData ? (
+          {userData && status === "authenticated" ? (
             <button
               type="button"
               className="mobile-nav__item-wrapper"

@@ -7,6 +7,13 @@
   @include mq(980px) {
     position: static;
   }
+  &__bg {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+  }
   &__nav {
     display: flex;
     align-items: center;
@@ -97,19 +104,16 @@
   }
   &__bottom {
     box-shadow: -1px 9px 5px 0px rgba($dark-600, 0.1);
-    position: absolute;
-    background-color: $white;
-    left: 0;
-    top: rem(85px);
+    position: relative;
+    inset: 0;
     z-index: 999;
-    padding: rem(10px) rem(8px);
-    min-height: 100vh;
+    width: 100%;
+    height: calc(100vh - 85px);
     display: none;
     @include mq(980px) {
       display: block;
       position: static;
-      background-color: transparent;
-      min-height: auto;
+      height: auto;
     }
     &--active {
       display: block !important;
@@ -117,13 +121,20 @@
   }
   &__bottom-wrapper {
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
-    @include mq(980px) {
-      flex-direction: row;
-      align-items: center;
-    }
     gap: rem(6px);
+    width: rem(230px);
+    height: 100%;
+    background-color: $white;
+    padding: rem(10px) rem(8px);
+    @include mq(980px) {
+      padding: 0;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: auto;
+      background-color: transparent;
+    }
   }
   &__bottom-link-wrapper {
     position: relative;

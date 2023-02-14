@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { signIn, signOut, useSession } from "next-auth/react";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { HamburgerIcon, PlusIcon, SearchIcon } from "@/components/icons";
 import { topMenu } from "@/data/header";
-import { signIn, signOut, useSession } from "next-auth/react";
 import { useCart } from "@/store";
 
 export default function Header() {
-  const { data: userData } = useSession();
+  const { data: userData, status } = useSession();
   const isMobile = useMediaQuery("(max-width: 980px)");
   const cart = useCart((state) => state.cart);
   const [total, setTotal] = useState<number>(0);
@@ -93,7 +93,7 @@ export default function Header() {
                     <p className="header__top-text">Order Today</p>
                   </div>
                 </Link>
-                {userData ? (
+                {userData && status === "authenticated" ? (
                   <button
                     type="button"
                     className="header__top-link"
@@ -146,30 +146,61 @@ export default function Header() {
         className={
           showNav ? "header__bottom header__bottom--active" : "header__bottom"
         }>
-        <div className="container">
-          <nav className="header__bottom-wrapper">
-            {topMenu.map(({ attribute, children }, i) => (
-              <div key={i} className="header__bottom-link-wrapper">
-                <Link href="/#" className="header__bottom-link">
-                  {attribute.name.en}
-                </Link>
-                {isMobile && <PlusIcon className="header__bottom-icon" />}
-                {children.length > 0 && (
-                  <div className="header__bottom-sublink-wrapper">
-                    {children.map(({ id, attribute }) => (
-                      <Link
-                        href="/#"
-                        className="header__bottom-sublink"
-                        key={id}>
-                        {attribute.name.en}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </nav>
-        </div>
+        {isMobile ? (
+          <>
+            <button
+              type="button"
+              className="header__bg"
+              onClick={() => setShowNav(!showNav)}></button>
+            <nav className="header__bottom-wrapper">
+              {topMenu.map(({ attribute, children }, i) => (
+                <div key={i} className="header__bottom-link-wrapper">
+                  <Link href="/#" className="header__bottom-link">
+                    {attribute.name.en}
+                  </Link>
+                  {isMobile && <PlusIcon className="header__bottom-icon" />}
+                  {children.length > 0 && (
+                    <div className="header__bottom-sublink-wrapper">
+                      {children.map(({ id, attribute }) => (
+                        <Link
+                          href="/#"
+                          className="header__bottom-sublink"
+                          key={id}>
+                          {attribute.name.en}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </nav>
+          </>
+        ) : (
+          <div className="container">
+            <nav className="header__bottom-wrapper">
+              {topMenu.map(({ attribute, children }, i) => (
+                <div key={i} className="header__bottom-link-wrapper">
+                  <Link href="/#" className="header__bottom-link">
+                    {attribute.name.en}
+                  </Link>
+                  {isMobile && <PlusIcon className="header__bottom-icon" />}
+                  {children.length > 0 && (
+                    <div className="header__bottom-sublink-wrapper">
+                      {children.map(({ id, attribute }) => (
+                        <Link
+                          href="/#"
+                          className="header__bottom-sublink"
+                          key={id}>
+                          {attribute.name.en}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );
