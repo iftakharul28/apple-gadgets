@@ -20,15 +20,15 @@ const Footer = () => {
             </Link>
           </div>
           <div className="footer__row">
-            {footerMenu.map(({ name, url }) => (
-              <Link className="footer__row-link" href={`#${url}`}>
+            {footerMenu.map(({ name, url }, i: number) => (
+              <Link key={i} className="footer__row-link" href={`#${url}`}>
                 {name}
               </Link>
             ))}
           </div>
           <div className="footer__row">
-            {footerLink.map(({ name, url }) => (
-              <Link className="footer__row-link" href={`#${url}`}>
+            {footerLink.map(({ name, url }, i: number) => (
+              <Link key={i} className="footer__row-link" href={`#${url}`}>
                 {name}
               </Link>
             ))}
@@ -37,8 +37,10 @@ const Footer = () => {
             <p className="footer__row-text footer__row-text--secondery">
               Apple Gadgets Ltd.
             </p>
-            {footerAddress.address.map(({ name }) => (
-              <p className="footer__row-text">{name}</p>
+            {footerAddress.address.map(({ name }, i: number) => (
+              <p key={i} className="footer__row-text">
+                {name}
+              </p>
             ))}
             <Link
               className="footer__row-text"
