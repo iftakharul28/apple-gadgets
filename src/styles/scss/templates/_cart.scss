@@ -1,12 +1,12 @@
 .cart {
   &__wrappper {
     @include mq(medium-large) {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      display: flex;
       gap: rem(25px);
     }
   }
   &__product {
+    flex: 2;
     border-radius: rem(4px);
     grid-column: span 2;
     box-shadow: -1px 5px 5px 0px rgba($dark-600, 0.1);
@@ -88,8 +88,12 @@
   }
   &__table {
     margin-top: rem(25px);
-    @include mq(medium) {
+    @include mq(medium-large) {
+      flex: 1;
       margin-top: 0;
+      position: sticky;
+      top: rem(15px);
+      height: 100%;
     }
   }
   &__table-wrapper {

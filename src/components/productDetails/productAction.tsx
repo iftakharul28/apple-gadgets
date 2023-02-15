@@ -178,9 +178,9 @@ const ProductAction = ({ product }: { product: productType | null }) => {
           <div className="product__storage-wrapper">
             <p>storage:</p>
             {product?.storage.map(({ id, storage }: Storage, i: number) => (
-              <div
+              <button
+                type="button"
                 key={i}
-                role="button"
                 onClick={() => ActiveStorage(id)}
                 className={
                   selectedStorage?.id === id
@@ -189,7 +189,7 @@ const ProductAction = ({ product }: { product: productType | null }) => {
                 }
                 title={storage || ""}>
                 <p className="product__storage-text">{storage}</p>
-              </div>
+              </button>
             ))}
           </div>
         )}
@@ -197,10 +197,10 @@ const ProductAction = ({ product }: { product: productType | null }) => {
           <div className="product__color-wrapper">
             <p>color:</p>
             {product?.color.map(
-              ({ id, color, colorCode, price, image }: Color, i: number) => (
-                <div
+              ({ id, color, colorCode }: Color, i: number) => (
+                <button
+                  type="button"
                   key={i}
-                  role="button"
                   onClick={() => ActiveProduct(id)}
                   className={
                     selectedColor?.id === id
@@ -210,7 +210,7 @@ const ProductAction = ({ product }: { product: productType | null }) => {
                   title={color || ""}
                   style={{ backgroundColor: colorCode || "" }}>
                   <p className="visually-hidden">{color}</p>
-                </div>
+                </button>
               )
             )}
           </div>

@@ -1,2 +1,37 @@
 .footer {
+  background-color: $dark-700;
+  padding: rem(55px) 0 rem(45px);
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: rem(25px);
+    @include mq(medium) {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: rem(20px);
+    }
+  }
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: rem(15px);
+  }
+  &__row-wrapper {
+    display: block;
+    padding: rem(10px) rem(25px);
+    border: 1px solid $white;
+    border-radius: rem(18px);
+  }
+  &__row-text {
+    font-size: rem(13px);
+    color: $white;
+    &--secondery {
+      font-size: rem(16px);
+      font-weight: 500;
+    }
+  }
+  &__row-link {
+    font-size: rem(13px);
+    color: $white;
+  }
 }

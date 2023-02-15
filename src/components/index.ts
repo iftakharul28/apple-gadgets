@@ -1,4 +1,5 @@
 export { default as Header } from "./nav/Header";
+export { default as Footer } from "./nav/Footer";
 export { default as MobileNav } from "./nav/MobileNav";
 export { default as RegisterForm } from "./form/RegisterForm";
 export { default as ColorForm } from "./form/ColorForm";
@@ -22,7 +23,6 @@ export { default as CardSkeleton } from "./skeleton/CardSkeleton";
 export { default as DetailsSkeleton } from "./skeleton/DetailsSkeleton";
 export { default as RecentProductSkeleton } from "./skeleton/RecentProductSkeleton";
 export { default as Alart } from "./alart/Alart";
-// export { default as  } from "./";
 // export { default as  } from "./";
 // export { default as  } from "./";
 // export { default as  } from "./";

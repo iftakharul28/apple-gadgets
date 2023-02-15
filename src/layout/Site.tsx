@@ -1,4 +1,4 @@
-import { Header, MobileNav } from "@/components/index";
+import { Footer, Header, MobileNav } from "@/components/index";
 import type { siteType } from "@/types/index";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
@@ -9,6 +9,7 @@ const Site = ({ children }: siteType) => {
       <Header />
       <main className="main">{children}</main>
       {isMobile && <MobileNav />}
+      <Footer />
     </>
   );
 };
