@@ -118,6 +118,7 @@ const Checkout = () => {
                 </div>
                 <Link href="checkout">
                   <button
+                    disabled={cartList.length === 0}
                     type="button"
                     className="checkout__button  checkout__button--secondery">
                     Place Order

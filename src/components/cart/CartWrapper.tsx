@@ -54,7 +54,10 @@ const CartWrapper = () => {
             <p className="cart__table-title">BDT {totalCost}</p>
           </div>
           <Link href="checkout">
-            <button type="button" className="cart__button">
+            <button
+              disabled={cartList.length === 0}
+              type="button"
+              className="cart__button">
               Check out
             </button>
           </Link>
