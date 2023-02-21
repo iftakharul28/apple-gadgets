@@ -25,26 +25,24 @@ const Checkout = () => {
   const cuponCheck = (key: string) => {
     const find = cuponList.some((item) => item.name === key);
     if (!find) {
-      if (
-        key.startsWith("Discount5") ||
-        key.startsWith("Discount10") ||
-        key.startsWith("Special100")
-      ) {
-        if (key.startsWith("Discount5")) {
+      switch (key) {
+        case "Discount5":
           setCuponList({ name: "Discount5" });
           addFinalPrice({ price: totalCost - 5 });
           setTotalCost(totalCost - 5);
-        }
-        if (key.startsWith("Discount10")) {
+          break;
+        case "Discount10":
           setCuponList({ name: "Discount10" });
           addFinalPrice({ price: totalCost - 10 });
           setTotalCost(totalCost - 10);
-        }
-        if (key.startsWith("Special100")) {
+          break;
+        case "Special100":
           setCuponList({ name: "Special100" });
           addFinalPrice({ price: totalCost - 100 });
           setTotalCost(totalCost - 100);
-        }
+          break;
+        default:
+          break;
       }
     } else {
       setAlart(true);
@@ -116,14 +114,22 @@ const Checkout = () => {
                   </p>
                   <p className="checkout__table-title">BDT {totalCost + 100}</p>
                 </div>
-                <Link href="checkout">
+                {/* {cartList.length != 0 ? (
+                  <Link href="checkout" className="checkout__button">
+                    <button
+                      type="button"
+                      className="checkout__button  checkout__button--secondery">
+                      Place Order
+                    </button>
+                  </Link>
+                ) : (
                   <button
-                    disabled={cartList.length === 0}
                     type="button"
+                    disabled
                     className="checkout__button  checkout__button--secondery">
                     Place Order
                   </button>
-                </Link>
+                )} */}
               </div>
             </div>
           </div>

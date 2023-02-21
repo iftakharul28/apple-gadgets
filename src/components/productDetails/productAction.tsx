@@ -36,93 +36,38 @@ const ProductAction = ({ product }: { product: productType | null }) => {
     qty: 1,
     total: 0,
   });
-  const ActiveProduct = (id: string) => {
-    if (id) {
-      setSelectedColor(product?.color.find((el) => el.id === id));
-    }
-    return "";
-  };
-  const ActiveStorage = (id: string) => {
-    if (id) {
-      setSelectedStorage(product?.storage.find((el) => el.id === id));
-    }
-    return "";
-  };
   const AddToCard = (key: string, e?: ChangeEvent<HTMLInputElement>) => {
-    if (key === "add") {
-      setAddCard({
-        ...addCard,
-        qty: addCard?.qty ? addCard?.qty + 1 : 1,
-      });
+    switch (key) {
+      case "add":
+        setAddCard({
+          ...addCard,
+          qty: addCard?.qty ? addCard?.qty + 1 : 1,
+        });
+        break;
+      case "update":
+        setAddCard({ ...addCard, qty: Number(e?.target.value) });
+        break;
+      case "remove":
+        setAddCard({
+          ...addCard,
+          qty: addCard?.qty ? addCard?.qty - 1 : 1,
+        });
+        break;
+      default:
+        break;
     }
-    if (key === "update") {
-      setAddCard({ ...addCard, qty: Number(e?.target.value) });
-    }
-    if (key === "remove") {
-      setAddCard({
-        ...addCard,
-        qty: addCard?.qty ? addCard?.qty - 1 : 1,
-      });
-    }
-    return;
   };
   const buttonAction = (type: string) => {
-    if (type === "buy") {
-      router.push("/checkout");
-      setCart();
-      setCartList({
-        productId: product?.id,
-        id: selectedColor?.id,
-        title: product?.title,
-        image: selectedColor?.image || "",
-        brand: product?.brand || "",
-        color: selectedColor?.color || "",
-        storage: selectedStorage?.storage || "",
-        price: selectedStorage?.price
-          ? Number(selectedStorage?.price)
-          : Number(selectedColor?.price),
-        qty: addCard?.qty,
-        total:
-          addCard?.qty *
-          (selectedStorage?.price
-            ? Number(selectedStorage?.price)
-            : Number(selectedColor?.price)),
-      });
-    }
-    if (type === "card") {
-      if (
-        selectedColor &&
-        selectedStorage?.price != 0 &&
-        selectedColor?.price != 0
-      ) {
-        const find = cartList.some((item) => item.id == selectedColor?.id);
-        if (!find) {
-          updateCart();
-          addCartList({
-            productId: product?.id,
-            id: selectedColor?.id,
-            title: product?.title,
-            image: selectedColor?.image || "",
-            brand: product?.brand || "",
-            color: selectedColor?.color || "",
-            storage: selectedStorage?.storage || "",
-            price: selectedStorage?.price
-              ? Number(selectedStorage?.price)
-              : Number(selectedColor?.price),
-            qty: addCard?.qty,
-            total:
-              addCard?.qty *
-              (selectedStorage?.price
-                ? Number(selectedStorage?.price)
-                : Number(selectedColor?.price)),
-          });
-        }
-        updateCartList({
+    switch (type) {
+      case "buy":
+        router.push("/checkout");
+        setCart();
+        setCartList({
           productId: product?.id,
           id: selectedColor?.id,
           title: product?.title,
-          brand: product?.brand || "",
           image: selectedColor?.image || "",
+          brand: product?.brand || "",
           color: selectedColor?.color || "",
           storage: selectedStorage?.storage || "",
           price: selectedStorage?.price
@@ -135,9 +80,59 @@ const ProductAction = ({ product }: { product: productType | null }) => {
               ? Number(selectedStorage?.price)
               : Number(selectedColor?.price)),
         });
-      } else {
-        setAlart(true);
-      }
+        break;
+      case "card":
+        if (
+          selectedColor &&
+          selectedStorage?.price != 0 &&
+          selectedColor?.price != 0
+        ) {
+          const find = cartList.some((item) => item.id == selectedColor?.id);
+          if (!find) {
+            updateCart();
+            addCartList({
+              productId: product?.id,
+              id: selectedColor?.id,
+              title: product?.title,
+              image: selectedColor?.image || "",
+              brand: product?.brand || "",
+              color: selectedColor?.color || "",
+              storage: selectedStorage?.storage || "",
+              price: selectedStorage?.price
+                ? Number(selectedStorage?.price)
+                : Number(selectedColor?.price),
+              qty: addCard?.qty,
+              total:
+                addCard?.qty *
+                (selectedStorage?.price
+                  ? Number(selectedStorage?.price)
+                  : Number(selectedColor?.price)),
+            });
+          }
+          updateCartList({
+            productId: product?.id,
+            id: selectedColor?.id,
+            title: product?.title,
+            brand: product?.brand || "",
+            image: selectedColor?.image || "",
+            color: selectedColor?.color || "",
+            storage: selectedStorage?.storage || "",
+            price: selectedStorage?.price
+              ? Number(selectedStorage?.price)
+              : Number(selectedColor?.price),
+            qty: addCard?.qty,
+            total:
+              addCard?.qty *
+              (selectedStorage?.price
+                ? Number(selectedStorage?.price)
+                : Number(selectedColor?.price)),
+          });
+        } else {
+          setAlart(true);
+        }
+        break;
+      default:
+        break;
     }
   };
   return (
@@ -181,7 +176,11 @@ const ProductAction = ({ product }: { product: productType | null }) => {
               <button
                 type="button"
                 key={i}
-                onClick={() => ActiveStorage(id)}
+                onClick={() =>
+                  setSelectedStorage(
+                    product?.storage.find((el) => el.id === id)
+                  )
+                }
                 className={
                   selectedStorage?.id === id
                     ? "product__storage product__storage--active"
@@ -201,7 +200,9 @@ const ProductAction = ({ product }: { product: productType | null }) => {
                 <button
                   type="button"
                   key={i}
-                  onClick={() => ActiveProduct(id)}
+                  onClick={() =>
+                    setSelectedColor(product?.color.find((el) => el.id === id))
+                  }
                   className={
                     selectedColor?.id === id
                       ? "product__color product__color--active"
