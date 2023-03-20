@@ -6,6 +6,7 @@ type Props = {
   disabled?: boolean;
 };
 const ActionButton = (props: Props) => {
+  console.log(props.disabled);
   return (
     <button
       className={props.className}

@@ -56,7 +56,7 @@ const CartWrapper = () => {
           </div>
           <Link href="checkout">
             <ActionButton
-              disabled={cartList.length === 0}
+              disabled={totalCart.length != 0 ? false : true}
               type="button"
               className="cart__button">
               Check out
