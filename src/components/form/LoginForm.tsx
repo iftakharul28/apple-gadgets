@@ -2,6 +2,7 @@ import type { loginValidation } from "@/types/index";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import { useFormik } from "formik";
+import { ActionButton } from "@/components/buttons";
 import { loginValidate } from "@/lib/validate";
 const LoginForm = () => {
   const router = useRouter();
@@ -76,16 +77,16 @@ const LoginForm = () => {
           {...formik.getFieldProps("password")}
         />
       </div>
-      <button type="submit" className="form__button">
+      <ActionButton className="form__button" type="submit">
         Sign in
-      </button>
-      <button
+      </ActionButton>
+      <ActionButton
         className="login__button"
         type="button"
         onClick={handleGoogleSignin}>
-        Sign In with Google{" "}
+        Sign In with Google
         <img src={"/google.svg"} alt="google" width="20" height={20} />
-      </button>
+      </ActionButton>
     </form>
   );
 };

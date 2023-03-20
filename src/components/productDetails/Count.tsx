@@ -1,17 +1,18 @@
 import type { ChangeEvent } from "react";
-type CountType = {
+import { ActionButton } from "@/components/buttons";
+type Props = {
   AddToCard: (key: string, e?: ChangeEvent<HTMLInputElement>) => void;
   qty?: number;
 };
-const Count = ({ AddToCard, qty }: CountType) => {
+const Count = (props: Props) => {
   return (
     <div className="product__actions-wrapper">
-      <button
+      <ActionButton
         type="button"
         className="product__action"
-        onClick={() => AddToCard("remove")}>
+        onClick={() => props.AddToCard("remove")}>
         -
-      </button>
+      </ActionButton>
       <label className="visually-hidden" htmlFor="add">
         add
       </label>
@@ -20,15 +21,15 @@ const Count = ({ AddToCard, qty }: CountType) => {
         type="number"
         name="add"
         id="add"
-        value={qty ? qty : 1}
-        onChange={(e) => AddToCard("update", e)}
+        value={props.qty ? props.qty : 1}
+        onChange={(e) => props.AddToCard("update", e)}
       />
-      <button
+      <ActionButton
         type="button"
         className="product__action"
-        onClick={() => AddToCard("add")}>
+        onClick={() => props.AddToCard("add")}>
         +
-      </button>
+      </ActionButton>
     </div>
   );
 };

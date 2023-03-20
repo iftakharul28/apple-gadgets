@@ -1,6 +1,7 @@
 import { api } from "@/utils/api";
 import { useRouter } from "next/router";
 import { registerValidate } from "@/lib/validate";
+import { ActionButton } from "@/components/buttons";
 import type { registertype } from "@/types/index";
 import { useFormik } from "formik";
 
@@ -107,9 +108,9 @@ const RegisterForm = () => {
           {...formik.getFieldProps("cpassword")}
         />
       </div>
-      <button type="submit" className="form__button">
+      <ActionButton type="submit" className="form__button">
         Sign Up
-      </button>
+      </ActionButton>
     </form>
   );
 };

@@ -1,8 +1,9 @@
-import { useCart } from "@/store";
-import type { Category, Color, Storage } from "@prisma/client";
 import { ChangeEvent, useState } from "react";
 import { Alart, Count } from "@/components";
+import { ActionButton } from "@/components/buttons";
 import { useRouter } from "next/router";
+import { useCart } from "@/store";
+import type { Category, Color, Storage } from "@prisma/client";
 type productType = {
   id: string;
   image: string | null;
@@ -217,42 +218,19 @@ const ProductAction = ({ product }: { product: productType | null }) => {
           </div>
         )}
         <div className="product__account">
-          {/* <div className="product__actions-wrapper">
-            <button
-              className="product__action"
-              onClick={() => AddToCard("remove")}>
-              -
-            </button>
-            <label className="visually-hidden" htmlFor="add">
-              add
-            </label>
-            <input
-              className="product__action-input"
-              type="number"
-              name="add"
-              id="add"
-              value={addCard?.qty ? addCard.qty : 1}
-              onChange={(e) => AddToCard("update", e)}
-            />
-            <button
-              className="product__action"
-              onClick={() => AddToCard("add")}>
-              +
-            </button>
-          </div> */}
           <Count AddToCard={AddToCard} qty={addCard?.qty} />
-          <button
+          <ActionButton
+            onClick={() => buttonAction("buy")}
             type="button"
-            className="product__button product__button--secondey"
-            onClick={() => buttonAction("buy")}>
+            className="product__button product__button--secondey">
             Buy Now
-          </button>
-          <button
+          </ActionButton>
+          <ActionButton
+            onClick={() => buttonAction("card")}
             type="button"
-            className="product__button"
-            onClick={() => buttonAction("card")}>
+            className="product__button">
             Add to card
-          </button>
+          </ActionButton>
         </div>
       </div>
       {alart ? (

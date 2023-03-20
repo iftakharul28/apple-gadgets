@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useCart } from "@/store";
 import { CartList } from "@/components";
+import { ActionButton } from "@/components/buttons";
 import Link from "next/link";
 
 const CartWrapper = () => {
@@ -54,12 +55,12 @@ const CartWrapper = () => {
             <p className="cart__table-title">BDT {totalCost}</p>
           </div>
           <Link href="checkout">
-            <button
+            <ActionButton
               disabled={cartList.length === 0}
               type="button"
               className="cart__button">
               Check out
-            </button>
+            </ActionButton>
           </Link>
         </div>
       </div>

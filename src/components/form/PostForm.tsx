@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { api } from "@/utils/api";
 import { CategorySelect, ColorSelect, StorageSelect } from "@/components/index";
+import { ActionButton } from "@/components/buttons";
 import type {
   ColorType,
   StorageType,
@@ -167,6 +168,14 @@ const PostForm = ({ categories }: { categories?: CategoryType[] }) => {
         }}>
         post
       </button>
+      <ActionButton
+        type="button"
+        className="form__button"
+        onClick={() => {
+          addPost({ ...product, color, storage, category });
+        }}>
+        Post
+      </ActionButton>
     </form>
   );
 };

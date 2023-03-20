@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ActionButton } from "@/components/buttons";
 import type { VariantFormProps, VariantType } from "@/types";
 const VarientForm = ({
   item,
@@ -151,7 +152,7 @@ VariantFormProps) => {
           />
         </div>
       </div>
-      <button
+      <ActionButton
         type="button"
         onClick={() => {
           setVariant([
@@ -162,7 +163,7 @@ VariantFormProps) => {
           ]);
         }}>
         Update Varient
-      </button>
+      </ActionButton>
     </div>
   );
 };

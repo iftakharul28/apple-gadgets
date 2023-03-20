@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { ActionButton } from "@/components/buttons";
 import { Alart, CheckoutForm } from "@/components";
 import { Layout } from "@/layout";
 import { useCart, useCupon } from "@/store";
@@ -100,12 +100,12 @@ const Checkout = () => {
                     value={coupon}
                     onChange={(e) => setCupon(e.target.value)}
                   />
-                  <button
+                  <ActionButton
                     className="checkout__button"
                     type="button"
                     onClick={() => cuponCheck(coupon)}>
                     Apply
-                  </button>
+                  </ActionButton>
                 </form>
                 <hr className="checkout__table-hr checkout__table-hr--secondery" />
                 <div className="checkout__table-box">
@@ -114,22 +114,6 @@ const Checkout = () => {
                   </p>
                   <p className="checkout__table-title">BDT {totalCost + 100}</p>
                 </div>
-                {/* {cartList.length != 0 ? (
-                  <Link href="checkout" className="checkout__button">
-                    <button
-                      type="button"
-                      className="checkout__button  checkout__button--secondery">
-                      Place Order
-                    </button>
-                  </Link>
-                ) : (
-                  <button
-                    type="button"
-                    disabled
-                    className="checkout__button  checkout__button--secondery">
-                    Place Order
-                  </button>
-                )} */}
               </div>
             </div>
           </div>

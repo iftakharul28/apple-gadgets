@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { api } from "@/utils/api";
+import { ActionButton } from "@/components/buttons";
 type User = {
   id?: string;
   name?: string | null;
@@ -43,12 +44,12 @@ const ProfileForm = ({ data }: { data?: User | null }) => {
           value={userInfo?.email ? userInfo?.email : ""}
         />
       </div>
-      <button
+      <ActionButton
         type="button"
         className="form__button"
         onClick={() => updateUser({ ...userInfo })}>
         Update Info
-      </button>
+      </ActionButton>
     </form>
   );
 };
